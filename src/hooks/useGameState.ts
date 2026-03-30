@@ -4,7 +4,7 @@ import questionsData from '../data/questions.json';
 import { pickRandomQuestions, generateAudienceResults, generateFriendSuggestion } from '../utils/helpers';
 import type { Question } from '../utils/types';
 
-const allQuestions: Question[] = questionsData;
+const allQuestions = questionsData as Question[];
 const QUESTIONS_PER_PARTICIPANT = 5;
 const TIME_PER_QUESTION = 15;
 
