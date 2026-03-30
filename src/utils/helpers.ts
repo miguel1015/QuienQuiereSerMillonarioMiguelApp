@@ -1,4 +1,4 @@
-import type { Question } from './types';
+import type { Question, Round } from './types';
 
 export function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
@@ -13,12 +13,14 @@ export function pickRandomQuestions(
   allQuestions: Question[],
   count: number,
   excludeIndices: number[],
-  group?: 'A' | 'B'
+  group?: 'A' | 'B',
+  round?: Round
 ): { questions: Question[]; indices: number[] } {
   const available = allQuestions
     .map((q, i) => ({ question: q, index: i }))
     .filter((item) => !excludeIndices.includes(item.index))
-    .filter((item) => !group || item.question.group === group);
+    .filter((item) => !group || item.question.group === group)
+    .filter((item) => !round || item.question.round === round);
 
   const shuffled = shuffleArray(available);
   const picked = shuffled.slice(0, count);

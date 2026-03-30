@@ -44,8 +44,8 @@ function App() {
 
   const { playSound, stopSuspense } = useSound();
 
-  const handleSetupContinue = (groupA: string[], groupB: string[]) => {
-    setGroups(groupA, groupB);
+  const handleSetupContinue = (groupA: string[], groupB: string[], round: 'eliminatorias' | 'final') => {
+    setGroups(groupA, groupB, round);
     setTimeout(() => startGame(), 50);
   };
 

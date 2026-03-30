@@ -1,3 +1,5 @@
+export type Round = 'eliminatorias' | 'final';
+
 export interface Question {
   question: string;
   options: string[];
@@ -5,6 +7,7 @@ export interface Question {
   explanation: string;
   verse: string;
   group?: 'A' | 'B';
+  round?: Round;
 }
 
 export interface Participant {
@@ -25,6 +28,7 @@ export type Screen = 'home' | 'setup' | 'game' | 'results';
 
 export interface GameState {
   screen: Screen;
+  round: Round;
   groupA: string[];
   groupB: string[];
   participants: Participant[];
@@ -44,7 +48,7 @@ export interface GameState {
 
 export type GameAction =
   | { type: 'SET_SCREEN'; screen: Screen }
-  | { type: 'SET_GROUPS'; groupA: string[]; groupB: string[] }
+  | { type: 'SET_GROUPS'; groupA: string[]; groupB: string[]; round: Round }
   | { type: 'START_GAME' }
   | { type: 'SELECT_ANSWER'; index: number }
   | { type: 'REVEAL_ANSWER' }

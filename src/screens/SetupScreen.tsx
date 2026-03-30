@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedBackground from '../components/AnimatedBackground';
+import type { Round } from '../utils/types';
 
 interface SetupScreenProps {
-  onContinue: (groupA: string[], groupB: string[]) => void;
+  onContinue: (groupA: string[], groupB: string[], round: Round) => void;
   onBack: () => void;
 }
 
 export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
   const [groupA, setGroupA] = useState<string[]>(['']);
   const [groupB, setGroupB] = useState<string[]>(['']);
+  const [round, setRound] = useState<Round>('eliminatorias');
   const [error, setError] = useState('');
 
   const addParticipant = (group: 'A' | 'B') => {
@@ -46,7 +48,7 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
       return;
     }
     setError('');
-    onContinue(filteredA, filteredB);
+    onContinue(filteredA, filteredB, round);
   };
 
   const renderGroup = (group: 'A' | 'B', names: string[], gradientFrom: string, gradientTo: string, borderColor: string, textColor: string) => (
@@ -141,6 +143,40 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
           <p className="text-gray-game text-lg">
             Ingresa los nombres de los participantes
           </p>
+        </motion.div>
+
+        {/* Round selector */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center gap-3 mb-8"
+        >
+          {([
+            { value: 'eliminatorias' as Round, label: 'Eliminatorias', icon: '⚔️' },
+            { value: 'final' as Round, label: 'Final', icon: '🏆' },
+          ]).map((option) => (
+            <motion.button
+              key={option.value}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                if (option.value === 'final') {
+                  setError('La ronda Final se encuentra en construcción. Próximamente...');
+                  return;
+                }
+                setError('');
+                setRound(option.value);
+              }}
+              className={`px-5 py-3 rounded-xl font-bold text-sm md:text-base transition-all border-2 ${
+                round === option.value
+                  ? 'bg-gold/20 border-gold text-gold shadow-lg shadow-gold/20'
+                  : 'bg-dark-card/80 border-gray-game/20 text-gray-game hover:border-gold/40'
+              }`}
+            >
+              {option.icon} {option.label}
+            </motion.button>
+          ))}
         </motion.div>
 
         {/* Groups side by side */}

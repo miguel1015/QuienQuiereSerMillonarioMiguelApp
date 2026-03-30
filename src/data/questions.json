@@ -5,7 +5,8 @@
     "correct": 1,
     "explanation": "La Biblia protestante contiene 66 libros: 39 del Antiguo Testamento y 27 del Nuevo Testamento.",
     "verse": "2 Timoteo 3:16",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuántos libros tiene el Nuevo Testamento?",
@@ -13,7 +14,8 @@
     "correct": 2,
     "explanation": "El Nuevo Testamento contiene 27 libros, desde el Evangelio de Mateo hasta Apocalipsis.",
     "verse": "2 Timoteo 3:16",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cómo se llamaban los hijos de Noé?",
@@ -21,7 +23,8 @@
     "correct": 3,
     "explanation": "Los tres hijos de Noé fueron Sem, Cam y Jafet, quienes repoblaron la tierra después del diluvio.",
     "verse": "Génesis 6:10",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cómo se llamó el apóstol que reemplazó a Judas Iscariote?",
@@ -29,7 +32,8 @@
     "correct": 3,
     "explanation": "Matías fue escogido por sorteo entre los discípulos para reemplazar a Judas Iscariote como uno de los doce apóstoles.",
     "verse": "Hechos 1:26",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién se cayó y murió mientras el apóstol Pablo predicaba?",
@@ -37,7 +41,8 @@
     "correct": 2,
     "explanation": "Eutico se durmió mientras Pablo predicaba en un tercer piso, cayó por la ventana y murió, pero Pablo lo resucitó.",
     "verse": "Hechos 20:9-10",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿A quién le habló un asna?",
@@ -45,7 +50,8 @@
     "correct": 3,
     "explanation": "El asna de Balaam habló por intervención divina cuando vio al ángel del Señor bloqueando el camino.",
     "verse": "Números 22:28",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuál es el capítulo más largo de la Biblia?",
@@ -53,7 +59,8 @@
     "correct": 2,
     "explanation": "El Salmo 119 es el capítulo más largo de la Biblia con 176 versículos, dedicado a la Palabra de Dios.",
     "verse": "Salmos 119:105",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cómo se llamó la reina que perdió su puesto por desobedecer a su esposo el rey?",
@@ -61,7 +68,8 @@
     "correct": 2,
     "explanation": "La reina Vasti fue destituida por el rey Asuero cuando se negó a presentarse ante él y sus invitados durante un banquete.",
     "verse": "Ester 1:12-19",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cómo se llamaban los amigos de Daniel?",
@@ -69,7 +77,8 @@
     "correct": 3,
     "explanation": "Sadrac, Mesac y Abed-nego fueron los nombres babilónicos de los tres amigos hebreos de Daniel que sobrevivieron al horno de fuego.",
     "verse": "Daniel 3:12-30",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién ayudó a Jesús a cargar su cruz?",
@@ -77,7 +86,8 @@
     "correct": 0,
     "explanation": "Simón de Cirene ayudó a Jesús en el camino al Calvario cargando su cruz.",
     "verse": "Mateo 27:32",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quiénes eran llamados los hijos del trueno?",
@@ -85,7 +95,8 @@
     "correct": 3,
     "explanation": "Jesús les puso a Santiago y Juan, hijos de Zebedeo, el sobrenombre de Boanerges, que significa 'hijos del trueno'.",
     "verse": "Marcos 3:17",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿A quién usó Dios para abrir el río Jordán?",
@@ -93,7 +104,8 @@
     "correct": 3,
     "explanation": "Dios usó a Josué para abrir las aguas del río Jordán, permitiendo que el pueblo de Israel cruzara en seco hacia la tierra prometida.",
     "verse": "Josué 3:14-17",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién colocó una señal del vellón a Dios?",
@@ -101,7 +113,8 @@
     "correct": 3,
     "explanation": "Gedeón pidió a Dios una señal usando un vellón de lana: primero que solo el vellón amaneciera mojado, y luego que solo el suelo estuviera mojado.",
     "verse": "Jueces 6:36-40",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién fue la esposa de Moisés?",
@@ -109,7 +122,8 @@
     "correct": 3,
     "explanation": "Séfora, hija de Jetro sacerdote de Madián, fue la esposa de Moisés.",
     "verse": "Éxodo 2:21",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿A qué profeta le tocó casarse con una ramera?",
@@ -117,7 +131,8 @@
     "correct": 3,
     "explanation": "Dios le ordenó al profeta Oseas casarse con Gómer, una mujer promiscua, como símbolo de la infidelidad de Israel hacia Dios.",
     "verse": "Oseas 1:2-3",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuántos hijos de Job murieron en un mismo día?",
@@ -125,7 +140,8 @@
     "correct": 2,
     "explanation": "Los 10 hijos de Job (7 varones y 3 mujeres) murieron cuando un gran viento derribó la casa donde estaban reunidos.",
     "verse": "Job 1:2, 18-19",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cómo se llamaba la tierra donde habitaba Job?",
@@ -133,7 +149,8 @@
     "correct": 3,
     "explanation": "Job vivía en la tierra de Uz, una región que se cree estaba ubicada al este del río Jordán.",
     "verse": "Job 1:1",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién hizo flotar un hacha?",
@@ -141,7 +158,8 @@
     "correct": 2,
     "explanation": "El profeta Eliseo hizo flotar un hacha de hierro que había caído al río Jordán, lanzando un palo al agua.",
     "verse": "2 Reyes 6:5-6",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuántas tinajas de agua convirtió Jesús en vino en las bodas de Caná?",
@@ -149,7 +167,8 @@
     "correct": 3,
     "explanation": "Jesús convirtió el agua de 6 tinajas de piedra en vino durante las bodas de Caná, su primer milagro.",
     "verse": "Juan 2:6-9",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Desde qué lugar recibió el apóstol Juan la visión del Apocalipsis?",
@@ -157,7 +176,8 @@
     "correct": 2,
     "explanation": "El apóstol Juan estaba desterrado en la isla de Patmos cuando recibió la revelación de Jesucristo que escribió en el libro de Apocalipsis.",
     "verse": "Apocalipsis 1:9",
-    "group": "A"
+    "group": "A",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuántos libros tiene el Antiguo Testamento?",
@@ -165,7 +185,8 @@
     "correct": 2,
     "explanation": "El Antiguo Testamento de la Biblia protestante contiene 39 libros, desde Génesis hasta Malaquías.",
     "verse": "2 Timoteo 3:16",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cómo se llamó el profeta que Dios utilizó para sanar a Naamán?",
@@ -173,7 +194,8 @@
     "correct": 3,
     "explanation": "El profeta Eliseo le indicó a Naamán, comandante del ejército sirio, que se sumergiera siete veces en el río Jordán para ser sanado de su lepra.",
     "verse": "2 Reyes 5:10-14",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién oró para que no lloviera y no llovió, y luego oró para que lloviera y llovió?",
@@ -181,7 +203,8 @@
     "correct": 3,
     "explanation": "El profeta Elías oró y no llovió durante tres años y medio, luego oró nuevamente y Dios envió lluvia sobre la tierra.",
     "verse": "Santiago 5:17-18",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿En qué monte reposó el arca de Noé?",
@@ -189,7 +212,8 @@
     "correct": 3,
     "explanation": "Después del diluvio, el arca de Noé reposó sobre los montes de Ararat, ubicados en la actual Turquía.",
     "verse": "Génesis 8:4",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuál es el capítulo más corto de la Biblia?",
@@ -197,7 +221,8 @@
     "correct": 2,
     "explanation": "El Salmo 117 es el capítulo más corto de la Biblia con solo 2 versículos, y también es el capítulo central de la Biblia.",
     "verse": "Salmos 117:1-2",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién murió en una horca que él mismo había preparado?",
@@ -205,7 +230,8 @@
     "correct": 2,
     "explanation": "Amán, oficial del rey Asuero, preparó una horca para colgar a Mardoqueo, pero terminó siendo colgado él mismo en ella.",
     "verse": "Ester 7:9-10",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cómo se llama el río donde se sumergió Naamán para ser sano de su lepra?",
@@ -213,7 +239,8 @@
     "correct": 3,
     "explanation": "Naamán se sumergió siete veces en el río Jordán siguiendo las instrucciones del profeta Eliseo y quedó completamente sano de su lepra.",
     "verse": "2 Reyes 5:14",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuáles de estos hacen parte de los libros poéticos de la Biblia?",
@@ -221,7 +248,8 @@
     "correct": 3,
     "explanation": "Los libros poéticos de la Biblia son Job, Salmos, Proverbios, Eclesiastés y Cantares de Salomón.",
     "verse": "Eclesiastés 1:1",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Cuáles de estos hacen parte de los libros históricos de la Biblia?",
@@ -229,7 +257,8 @@
     "correct": 0,
     "explanation": "Rut, Josué, Jueces, 1 Samuel y 2 Samuel son libros históricos del Antiguo Testamento que narran la historia del pueblo de Israel.",
     "verse": "Josué 1:1",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿A cuántas iglesias habla Juan en el Apocalipsis?",
@@ -237,7 +266,8 @@
     "correct": 3,
     "explanation": "Juan escribe a 7 iglesias de Asia Menor: Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea.",
     "verse": "Apocalipsis 1:11",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
   },
   {
     "question": "¿Quién murió desnucado y cuál era su oficio?",
@@ -245,6 +275,88 @@
     "correct": 3,
     "explanation": "Elí, sumo sacerdote de Israel, al escuchar que el arca del pacto había sido capturada y sus hijos habían muerto, cayó de su silla hacia atrás, se quebró la nuca y murió.",
     "verse": "1 Samuel 4:18",
-    "group": "B"
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿Qué profesión tenía Lucas?",
+    "options": ["Pescador", "Carpintero", "Médico", "Recaudador de impuestos"],
+    "correct": 2,
+    "explanation": "Lucas, autor del Evangelio que lleva su nombre y del libro de Hechos, era médico de profesión.",
+    "verse": "Colosenses 4:14",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿A quién dirige Juan su tercera carta?",
+    "options": ["Teófilo", "Timoteo", "Gayo", "Filemón"],
+    "correct": 2,
+    "explanation": "La tercera epístola de Juan está dirigida a Gayo, un creyente fiel a quien Juan elogia por su hospitalidad.",
+    "verse": "3 Juan 1:1",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿Qué libro de la Biblia comienza con: 'En el primer tratado, oh Teófilo'?",
+    "options": ["Lucas", "Romanos", "Hechos", "Hebreos"],
+    "correct": 2,
+    "explanation": "El libro de Hechos de los Apóstoles comienza con esas palabras, haciendo referencia al Evangelio de Lucas como el 'primer tratado' dirigido a Teófilo.",
+    "verse": "Hechos 1:1",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿Qué fue primero, el diluvio o la torre de Babel?",
+    "options": ["La torre de Babel", "Fueron al mismo tiempo", "El diluvio", "La Biblia no lo especifica"],
+    "correct": 2,
+    "explanation": "Primero ocurrió el diluvio universal en tiempos de Noé, y después sus descendientes intentaron construir la torre de Babel.",
+    "verse": "Génesis 7-11",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿Cómo se llamó el profeta que amonestó a David?",
+    "options": ["Elías", "Samuel", "Natán", "Isaías"],
+    "correct": 2,
+    "explanation": "El profeta Natán confrontó al rey David después de su pecado con Betsabé, usando la parábola de la ovejita.",
+    "verse": "2 Samuel 12:1-7",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿Cómo se llamaba la hermana de Absalón?",
+    "options": ["Mical", "Abigaíl", "Tamar", "Betsabé"],
+    "correct": 2,
+    "explanation": "Tamar era hermana de Absalón e hija del rey David. Absalón vengó la deshonra que sufrió su hermana.",
+    "verse": "2 Samuel 13:1",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿De qué sanó Jesús a la suegra de Pedro?",
+    "options": ["Lepra", "Ceguera", "Fiebre", "Parálisis"],
+    "correct": 2,
+    "explanation": "Jesús sanó a la suegra de Pedro de una fiebre. La tomó de la mano, la fiebre la dejó y ella comenzó a servirles.",
+    "verse": "Marcos 1:30-31",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿Para dónde iba Jesús cuando una mujer lo tocó y fue sana?",
+    "options": ["Al templo de Jerusalén", "A casa de Jairo", "Al monte de los Olivos", "A la sinagoga de Capernaúm"],
+    "correct": 1,
+    "explanation": "Jesús iba camino a la casa de Jairo para sanar a su hija cuando la mujer con flujo de sangre lo tocó y fue sanada.",
+    "verse": "Marcos 5:22-34",
+    "group": "B",
+    "round": "eliminatorias"
+  },
+  {
+    "question": "¿Con qué palabra termina el Nuevo Testamento?",
+    "options": ["Aleluya", "Gracia", "Amén", "Gloria"],
+    "correct": 2,
+    "explanation": "El Nuevo Testamento termina con la palabra 'Amén' al final del libro de Apocalipsis.",
+    "verse": "Apocalipsis 22:21",
+    "group": "B",
+    "round": "eliminatorias"
   }
 ]

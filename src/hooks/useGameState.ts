@@ -10,6 +10,7 @@ const TIME_PER_QUESTION = 15;
 
 const initialState: GameState = {
   screen: 'home',
+  round: 'eliminatorias',
   groupA: [],
   groupB: [],
   participants: [],
@@ -38,8 +39,8 @@ function buildParticipantOrder(groupA: string[], groupB: string[]): Participant[
   return participants;
 }
 
-function loadQuestionsForParticipant(usedIndices: number[], group: 'A' | 'B'): { questions: Question[]; indices: number[] } {
-  return pickRandomQuestions(allQuestions, QUESTIONS_PER_PARTICIPANT, usedIndices, group);
+function loadQuestionsForParticipant(usedIndices: number[], group: 'A' | 'B', round: GameState['round']): { questions: Question[]; indices: number[] } {
+  return pickRandomQuestions(allQuestions, QUESTIONS_PER_PARTICIPANT, usedIndices, group, round);
 }
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -48,12 +49,12 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, screen: action.screen };
 
     case 'SET_GROUPS':
-      return { ...state, groupA: action.groupA, groupB: action.groupB };
+      return { ...state, groupA: action.groupA, groupB: action.groupB, round: action.round };
 
     case 'START_GAME': {
       const participants = buildParticipantOrder(state.groupA, state.groupB);
       const firstGroup = participants[0].group;
-      const { questions, indices } = loadQuestionsForParticipant([], firstGroup);
+      const { questions, indices } = loadQuestionsForParticipant([], firstGroup, state.round);
       return {
         ...state,
         screen: 'game',
@@ -132,7 +133,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
       // Load new questions for next participant
       const nextGroup = state.participants[nextParticipantIndex].group;
-      const { questions, indices } = loadQuestionsForParticipant(state.usedQuestionIndices, nextGroup);
+      const { questions, indices } = loadQuestionsForParticipant(state.usedQuestionIndices, nextGroup, state.round);
       return {
         ...state,
         currentParticipantIndex: nextParticipantIndex,
@@ -212,7 +213,7 @@ export function useGameState() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   const setScreen = useCallback((screen: GameState['screen']) => dispatch({ type: 'SET_SCREEN', screen }), []);
-  const setGroups = useCallback((groupA: string[], groupB: string[]) => dispatch({ type: 'SET_GROUPS', groupA, groupB }), []);
+  const setGroups = useCallback((groupA: string[], groupB: string[], round: GameState['round']) => dispatch({ type: 'SET_GROUPS', groupA, groupB, round }), []);
   const startGame = useCallback(() => dispatch({ type: 'START_GAME' }), []);
   const selectAnswer = useCallback((index: number) => dispatch({ type: 'SELECT_ANSWER', index }), []);
   const revealAnswer = useCallback(() => dispatch({ type: 'REVEAL_ANSWER' }), []);
