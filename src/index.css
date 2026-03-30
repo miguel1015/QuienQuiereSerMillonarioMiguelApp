@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #dba347;
+  --color-gold-light: #f0c96e;
+  --color-gold-dark: #b8862e;
+  --color-gray-game: #bcb099;
+  --color-dark: #101010;
+  --color-dark-light: #1a1a2e;
+  --color-dark-card: #16213e;
+  --color-correct: #27ae60;
+  --color-incorrect: #e74c3c;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #101010;
+  color: #ffffff;
+}
+
+button {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #dba347;
+  border-radius: 3px;
+}

@@ -1,0 +1,250 @@
+[
+  {
+    "question": "¿Cuántos libros tiene la Biblia?",
+    "options": ["73", "66", "70", "59"],
+    "correct": 1,
+    "explanation": "La Biblia protestante contiene 66 libros: 39 del Antiguo Testamento y 27 del Nuevo Testamento.",
+    "verse": "2 Timoteo 3:16",
+    "group": "A"
+  },
+  {
+    "question": "¿Cuántos libros tiene el Nuevo Testamento?",
+    "options": ["25", "29", "27", "23"],
+    "correct": 2,
+    "explanation": "El Nuevo Testamento contiene 27 libros, desde el Evangelio de Mateo hasta Apocalipsis.",
+    "verse": "2 Timoteo 3:16",
+    "group": "A"
+  },
+  {
+    "question": "¿Cómo se llamaban los hijos de Noé?",
+    "options": ["Set, Cam y Enós", "Sem, Elam y Jafet", "Cam, Cus y Jafet", "Sem, Cam y Jafet"],
+    "correct": 3,
+    "explanation": "Los tres hijos de Noé fueron Sem, Cam y Jafet, quienes repoblaron la tierra después del diluvio.",
+    "verse": "Génesis 6:10",
+    "group": "A"
+  },
+  {
+    "question": "¿Cómo se llamó el apóstol que reemplazó a Judas Iscariote?",
+    "options": ["Bernabé", "Bartolomé", "José Barsabás", "Matías"],
+    "correct": 3,
+    "explanation": "Matías fue escogido por sorteo entre los discípulos para reemplazar a Judas Iscariote como uno de los doce apóstoles.",
+    "verse": "Hechos 1:26",
+    "group": "A"
+  },
+  {
+    "question": "¿Quién se cayó y murió mientras el apóstol Pablo predicaba?",
+    "options": ["Trófimo", "Epafrodito", "Eutico", "Filemón"],
+    "correct": 2,
+    "explanation": "Eutico se durmió mientras Pablo predicaba en un tercer piso, cayó por la ventana y murió, pero Pablo lo resucitó.",
+    "verse": "Hechos 20:9-10",
+    "group": "A"
+  },
+  {
+    "question": "¿A quién le habló un asna?",
+    "options": ["Moisés", "Josué", "Elías", "Balaam"],
+    "correct": 3,
+    "explanation": "El asna de Balaam habló por intervención divina cuando vio al ángel del Señor bloqueando el camino.",
+    "verse": "Números 22:28",
+    "group": "A"
+  },
+  {
+    "question": "¿Cuál es el capítulo más largo de la Biblia?",
+    "options": ["Números 7", "Salmos 78", "Salmos 119", "Isaías 66"],
+    "correct": 2,
+    "explanation": "El Salmo 119 es el capítulo más largo de la Biblia con 176 versículos, dedicado a la Palabra de Dios.",
+    "verse": "Salmos 119:105",
+    "group": "A"
+  },
+  {
+    "question": "¿Cómo se llamó la reina que perdió su puesto por desobedecer a su esposo el rey?",
+    "options": ["Ester", "Jezabel", "Vasti", "Atalía"],
+    "correct": 2,
+    "explanation": "La reina Vasti fue destituida por el rey Asuero cuando se negó a presentarse ante él y sus invitados durante un banquete.",
+    "verse": "Ester 1:12-19",
+    "group": "A"
+  },
+  {
+    "question": "¿Cómo se llamaban los amigos de Daniel?",
+    "options": ["Azarías, Misael y Ananías", "Sadrac, Abednego y Eliaquim", "Mesac, Sadrac y Belsasar", "Sadrac, Mesac y Abed-nego"],
+    "correct": 3,
+    "explanation": "Sadrac, Mesac y Abed-nego fueron los nombres babilónicos de los tres amigos hebreos de Daniel que sobrevivieron al horno de fuego.",
+    "verse": "Daniel 3:12-30",
+    "group": "A"
+  },
+  {
+    "question": "¿Quién ayudó a Jesús a cargar su cruz?",
+    "options": ["Simón de Cirene", "Pedro", "José de Arimatea", "Nicodemo"],
+    "correct": 0,
+    "explanation": "Simón de Cirene ayudó a Jesús en el camino al Calvario cargando su cruz.",
+    "verse": "Mateo 27:32",
+    "group": "A"
+  },
+  {
+    "question": "¿Quiénes eran llamados los hijos del trueno?",
+    "options": ["Pedro y Andrés", "Felipe y Bartolomé", "Jacobo y Tomás", "Santiago y Juan"],
+    "correct": 3,
+    "explanation": "Jesús les puso a Santiago y Juan, hijos de Zebedeo, el sobrenombre de Boanerges, que significa 'hijos del trueno'.",
+    "verse": "Marcos 3:17",
+    "group": "A"
+  },
+  {
+    "question": "¿A quién usó Dios para abrir el río Jordán?",
+    "options": ["Moisés", "Elías", "Eliseo", "Josué"],
+    "correct": 3,
+    "explanation": "Dios usó a Josué para abrir las aguas del río Jordán, permitiendo que el pueblo de Israel cruzara en seco hacia la tierra prometida.",
+    "verse": "Josué 3:14-17",
+    "group": "A"
+  },
+  {
+    "question": "¿Quién colocó una señal del vellón a Dios?",
+    "options": ["Sansón", "Jefté", "Barac", "Gedeón"],
+    "correct": 3,
+    "explanation": "Gedeón pidió a Dios una señal usando un vellón de lana: primero que solo el vellón amaneciera mojado, y luego que solo el suelo estuviera mojado.",
+    "verse": "Jueces 6:36-40",
+    "group": "A"
+  },
+  {
+    "question": "¿Quién fue la esposa de Moisés?",
+    "options": ["Miriam", "Jocabed", "Agar", "Séfora"],
+    "correct": 3,
+    "explanation": "Séfora, hija de Jetro sacerdote de Madián, fue la esposa de Moisés.",
+    "verse": "Éxodo 2:21",
+    "group": "A"
+  },
+  {
+    "question": "¿A qué profeta le tocó casarse con una ramera?",
+    "options": ["Jeremías", "Ezequiel", "Amós", "Oseas"],
+    "correct": 3,
+    "explanation": "Dios le ordenó al profeta Oseas casarse con Gómer, una mujer promiscua, como símbolo de la infidelidad de Israel hacia Dios.",
+    "verse": "Oseas 1:2-3",
+    "group": "A"
+  },
+  {
+    "question": "¿Cuántos hijos de Job murieron en un mismo día?",
+    "options": ["7", "12", "10", "3"],
+    "correct": 2,
+    "explanation": "Los 10 hijos de Job (7 varones y 3 mujeres) murieron cuando un gran viento derribó la casa donde estaban reunidos.",
+    "verse": "Job 1:2, 18-19",
+    "group": "A"
+  },
+  {
+    "question": "¿Cómo se llamaba la tierra donde habitaba Job?",
+    "options": ["Ur", "Edom", "Sinar", "Uz"],
+    "correct": 3,
+    "explanation": "Job vivía en la tierra de Uz, una región que se cree estaba ubicada al este del río Jordán.",
+    "verse": "Job 1:1",
+    "group": "A"
+  },
+  {
+    "question": "¿Quién hizo flotar un hacha?",
+    "options": ["Elías", "Moisés", "Eliseo", "Josué"],
+    "correct": 2,
+    "explanation": "El profeta Eliseo hizo flotar un hacha de hierro que había caído al río Jordán, lanzando un palo al agua.",
+    "verse": "2 Reyes 6:5-6",
+    "group": "A"
+  },
+  {
+    "question": "¿Cuántas tinajas de agua convirtió Jesús en vino en las bodas de Caná?",
+    "options": ["4", "8", "12", "6"],
+    "correct": 3,
+    "explanation": "Jesús convirtió el agua de 6 tinajas de piedra en vino durante las bodas de Caná, su primer milagro.",
+    "verse": "Juan 2:6-9",
+    "group": "A"
+  },
+  {
+    "question": "¿Desde qué lugar recibió el apóstol Juan la visión del Apocalipsis?",
+    "options": ["La isla de Chipre", "La isla de Creta", "La isla de Patmos", "La isla de Malta"],
+    "correct": 2,
+    "explanation": "El apóstol Juan estaba desterrado en la isla de Patmos cuando recibió la revelación de Jesucristo que escribió en el libro de Apocalipsis.",
+    "verse": "Apocalipsis 1:9",
+    "group": "A"
+  },
+  {
+    "question": "¿Cuántos libros tiene el Antiguo Testamento?",
+    "options": ["36", "42", "39", "46"],
+    "correct": 2,
+    "explanation": "El Antiguo Testamento de la Biblia protestante contiene 39 libros, desde Génesis hasta Malaquías.",
+    "verse": "2 Timoteo 3:16",
+    "group": "B"
+  },
+  {
+    "question": "¿Cómo se llamó el profeta que Dios utilizó para sanar a Naamán?",
+    "options": ["Elías", "Isaías", "Jeremías", "Eliseo"],
+    "correct": 3,
+    "explanation": "El profeta Eliseo le indicó a Naamán, comandante del ejército sirio, que se sumergiera siete veces en el río Jordán para ser sanado de su lepra.",
+    "verse": "2 Reyes 5:10-14",
+    "group": "B"
+  },
+  {
+    "question": "¿Quién oró para que no lloviera y no llovió, y luego oró para que lloviera y llovió?",
+    "options": ["Eliseo", "Samuel", "Moisés", "Elías"],
+    "correct": 3,
+    "explanation": "El profeta Elías oró y no llovió durante tres años y medio, luego oró nuevamente y Dios envió lluvia sobre la tierra.",
+    "verse": "Santiago 5:17-18",
+    "group": "B"
+  },
+  {
+    "question": "¿En qué monte reposó el arca de Noé?",
+    "options": ["Monte Sinaí", "Monte Hermón", "Monte Carmelo", "Monte Ararat"],
+    "correct": 3,
+    "explanation": "Después del diluvio, el arca de Noé reposó sobre los montes de Ararat, ubicados en la actual Turquía.",
+    "verse": "Génesis 8:4",
+    "group": "B"
+  },
+  {
+    "question": "¿Cuál es el capítulo más corto de la Biblia?",
+    "options": ["Salmos 1", "Salmos 131", "Salmos 117", "Salmos 23"],
+    "correct": 2,
+    "explanation": "El Salmo 117 es el capítulo más corto de la Biblia con solo 2 versículos, y también es el capítulo central de la Biblia.",
+    "verse": "Salmos 117:1-2",
+    "group": "B"
+  },
+  {
+    "question": "¿Quién murió en una horca que él mismo había preparado?",
+    "options": ["Absalón", "Acab", "Amán", "Coré"],
+    "correct": 2,
+    "explanation": "Amán, oficial del rey Asuero, preparó una horca para colgar a Mardoqueo, pero terminó siendo colgado él mismo en ella.",
+    "verse": "Ester 7:9-10",
+    "group": "B"
+  },
+  {
+    "question": "¿Cómo se llama el río donde se sumergió Naamán para ser sano de su lepra?",
+    "options": ["Nilo", "Éufrates", "Abana", "Jordán"],
+    "correct": 3,
+    "explanation": "Naamán se sumergió siete veces en el río Jordán siguiendo las instrucciones del profeta Eliseo y quedó completamente sano de su lepra.",
+    "verse": "2 Reyes 5:14",
+    "group": "B"
+  },
+  {
+    "question": "¿Cuáles de estos hacen parte de los libros poéticos de la Biblia?",
+    "options": ["Salmos, Lamentaciones y Nahúm", "Rut, Salmos y Proverbios", "Proverbios, Job e Isaías", "Job, Eclesiastés y Cantares"],
+    "correct": 3,
+    "explanation": "Los libros poéticos de la Biblia son Job, Salmos, Proverbios, Eclesiastés y Cantares de Salomón.",
+    "verse": "Eclesiastés 1:1",
+    "group": "B"
+  },
+  {
+    "question": "¿Cuáles de estos hacen parte de los libros históricos de la Biblia?",
+    "options": ["Rut, Josué y Jueces", "Génesis, Éxodo y Levítico", "Isaías, Jeremías y Ezequiel", "Salmos, Proverbios y Job"],
+    "correct": 0,
+    "explanation": "Rut, Josué, Jueces, 1 Samuel y 2 Samuel son libros históricos del Antiguo Testamento que narran la historia del pueblo de Israel.",
+    "verse": "Josué 1:1",
+    "group": "B"
+  },
+  {
+    "question": "¿A cuántas iglesias habla Juan en el Apocalipsis?",
+    "options": ["5", "10", "12", "7"],
+    "correct": 3,
+    "explanation": "Juan escribe a 7 iglesias de Asia Menor: Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea.",
+    "verse": "Apocalipsis 1:11",
+    "group": "B"
+  },
+  {
+    "question": "¿Quién murió desnucado y cuál era su oficio?",
+    "options": ["Aarón, sumo sacerdote", "Samuel, juez de Israel", "Nadab, sacerdote", "Elí, sumo sacerdote"],
+    "correct": 3,
+    "explanation": "Elí, sumo sacerdote de Israel, al escuchar que el arca del pacto había sido capturada y sus hijos habían muerto, cayó de su silla hacia atrás, se quebró la nuca y murió.",
+    "verse": "1 Samuel 4:18",
+    "group": "B"
+  }
+]
