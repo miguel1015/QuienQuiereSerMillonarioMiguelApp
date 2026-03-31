@@ -1,5 +1,27 @@
 export type Round = 'eliminatorias' | 'final';
 
+export type Difficulty = 'facil' | 'medio_facil' | 'intermedio' | 'medio_dificil' | 'dificil';
+
+export const DIFFICULTY_ORDER: Difficulty[] = ['facil', 'medio_facil', 'intermedio', 'medio_dificil', 'dificil'];
+
+export const DIFFICULTY_POINTS: Record<Difficulty, number> = {
+  facil: 1,
+  medio_facil: 2,
+  intermedio: 3,
+  medio_dificil: 4,
+  dificil: 5,
+};
+
+export const DIFFICULTY_LABELS: Record<Difficulty, string> = {
+  facil: 'Fácil',
+  medio_facil: 'Medio fácil',
+  intermedio: 'Intermedio',
+  medio_dificil: 'Medio difícil',
+  dificil: 'Difícil',
+};
+
+export const MAX_ROUND_SCORE = 15; // 1+2+3+4+5
+
 export interface Question {
   question: string;
   options: string[];
@@ -8,6 +30,7 @@ export interface Question {
   verse: string;
   group?: 'A' | 'B';
   round?: Round;
+  difficulty?: Difficulty;
 }
 
 export interface Participant {
@@ -16,6 +39,7 @@ export interface Participant {
   score: number;
   totalTime: number;
   questionsAnswered: number;
+  image?: string | null;
 }
 
 export interface HelpState {
@@ -26,11 +50,16 @@ export interface HelpState {
 
 export type Screen = 'home' | 'setup' | 'game' | 'results';
 
+export interface ParticipantEntry {
+  name: string;
+  image: string | null;
+}
+
 export interface GameState {
   screen: Screen;
   round: Round;
-  groupA: string[];
-  groupB: string[];
+  groupA: ParticipantEntry[];
+  groupB: ParticipantEntry[];
   participants: Participant[];
   currentParticipantIndex: number;
   currentQuestionIndex: number;
@@ -48,8 +77,9 @@ export interface GameState {
 
 export type GameAction =
   | { type: 'SET_SCREEN'; screen: Screen }
-  | { type: 'SET_GROUPS'; groupA: string[]; groupB: string[]; round: Round }
+  | { type: 'SET_GROUPS'; groupA: ParticipantEntry[]; groupB: ParticipantEntry[]; round: Round }
   | { type: 'START_GAME' }
+  | { type: 'START_FINAL'; finalistA: string; finalistB: string }
   | { type: 'SELECT_ANSWER'; index: number }
   | { type: 'REVEAL_ANSWER' }
   | { type: 'NEXT_TURN' }

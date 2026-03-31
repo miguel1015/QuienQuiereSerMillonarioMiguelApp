@@ -24,7 +24,7 @@ interface GameScreenProps {
   stopSuspense: () => void;
 }
 
-const TIME_PER_QUESTION = 15;
+const TIME_PER_QUESTION = 30;
 
 export default function GameScreen({
   state,

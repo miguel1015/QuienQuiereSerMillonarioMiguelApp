@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { Question } from '../utils/types';
+import { DIFFICULTY_LABELS, DIFFICULTY_POINTS } from '../utils/types';
 
 interface QuestionCardProps {
   question: Question;
@@ -11,6 +12,14 @@ interface QuestionCardProps {
 }
 
 const optionLabels = ['A', 'B', 'C', 'D'];
+
+const difficultyColors: Record<string, string> = {
+  facil: 'bg-green-500/20 text-green-400 border-green-500/30',
+  medio_facil: 'bg-lime-500/20 text-lime-400 border-lime-500/30',
+  intermedio: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+  medio_dificil: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+  dificil: 'bg-red-500/20 text-red-400 border-red-500/30',
+};
 
 export default function QuestionCard({
   question,
@@ -72,6 +81,11 @@ export default function QuestionCard({
         <span className="inline-block bg-gold/15 border border-gold/30 text-gold text-sm font-bold px-4 py-1.5 rounded-full tracking-wider uppercase">
           Pregunta {questionNumber} de {totalQuestions}
         </span>
+        {question.difficulty && (
+          <span className={`inline-block ml-2 border text-xs font-bold px-3 py-1.5 rounded-full tracking-wider uppercase ${difficultyColors[question.difficulty]}`}>
+            {DIFFICULTY_LABELS[question.difficulty]} — {DIFFICULTY_POINTS[question.difficulty]} {DIFFICULTY_POINTS[question.difficulty] === 1 ? 'pt' : 'pts'}
+          </span>
+        )}
       </motion.div>
 
       {/* Question text - bigger and bolder */}

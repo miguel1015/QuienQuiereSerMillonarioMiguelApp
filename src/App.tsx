@@ -39,13 +39,14 @@ function App() {
     useHelpFriend,
     useHelpAudience,
     closeHelp,
+    startFinal,
     resetGame,
   } = useGameState();
 
   const { playSound, stopSuspense } = useSound();
 
-  const handleSetupContinue = (groupA: string[], groupB: string[], round: 'eliminatorias' | 'final') => {
-    setGroups(groupA, groupB, round);
+  const handleSetupContinue = (groupA: { name: string; image: string | null }[], groupB: { name: string; image: string | null }[]) => {
+    setGroups(groupA, groupB, 'eliminatorias');
     setTimeout(() => startGame(), 50);
   };
 
@@ -138,6 +139,8 @@ function App() {
           >
             <ResultsScreen
               participants={state.participants}
+              round={state.round}
+              onStartFinal={(finalistA, finalistB) => startFinal(finalistA, finalistB)}
               onRestart={resetGame}
               playSound={playSound}
             />

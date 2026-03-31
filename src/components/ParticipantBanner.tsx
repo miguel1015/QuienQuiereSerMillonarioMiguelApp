@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { Participant } from '../utils/types';
+import { MAX_ROUND_SCORE } from '../utils/types';
 
 interface ParticipantBannerProps {
   participant: Participant;
@@ -24,17 +25,25 @@ export default function ParticipantBanner({ participant, questionIndex, totalQue
       }`} />
 
       <div className="relative flex items-center gap-2 md:gap-4 min-w-0">
-        {/* Group badge */}
+        {/* Participant image / Group badge */}
         <motion.div
           animate={{ rotate: [0, 5, -5, 0] }}
           transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
-          className={`w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl shrink-0 flex items-center justify-center font-extrabold text-base md:text-xl shadow-lg ${
-            isGroupA
-              ? 'bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-blue-500/30'
-              : 'bg-gradient-to-br from-purple-500 to-purple-700 text-white shadow-purple-500/30'
+          className={`w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl shrink-0 overflow-hidden flex items-center justify-center font-extrabold text-base md:text-xl shadow-lg ${
+            !participant.image
+              ? isGroupA
+                ? 'bg-linear-to-br from-blue-500 to-blue-700 text-white shadow-blue-500/30'
+                : 'bg-linear-to-br from-purple-500 to-purple-700 text-white shadow-purple-500/30'
+              : isGroupA
+                ? 'ring-2 ring-blue-500 shadow-blue-500/30'
+                : 'ring-2 ring-purple-500 shadow-purple-500/30'
           }`}
         >
-          {participant.group}
+          {participant.image ? (
+            <img src={participant.image} alt={participant.name} className="w-full h-full object-cover" />
+          ) : (
+            participant.group
+          )}
         </motion.div>
         <div className="min-w-0">
           <p className="text-white font-extrabold text-base md:text-2xl truncate">{participant.name}</p>
@@ -55,6 +64,7 @@ export default function ParticipantBanner({ participant, questionIndex, totalQue
             className="text-gold font-extrabold text-xl md:text-3xl tabular-nums"
           >
             {participant.score}
+            <span className="text-gray-game text-sm md:text-lg">/{MAX_ROUND_SCORE}</span>
           </motion.p>
         </div>
 

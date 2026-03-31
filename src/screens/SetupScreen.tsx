@@ -1,133 +1,127 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedBackground from '../components/AnimatedBackground';
-import type { Round } from '../utils/types';
+import { PARTICIPANTS, REQUIRED_PER_GROUP } from '../data/participants';
+import type { ParticipantOption } from '../data/participants';
+
+export interface ParticipantEntry {
+  name: string;
+  image: string | null;
+}
 
 interface SetupScreenProps {
-  onContinue: (groupA: string[], groupB: string[], round: Round) => void;
+  onContinue: (groupA: ParticipantEntry[], groupB: ParticipantEntry[]) => void;
   onBack: () => void;
 }
 
+type GroupAssignment = 'A' | 'B' | null;
+
 export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
-  const [groupA, setGroupA] = useState<string[]>(['']);
-  const [groupB, setGroupB] = useState<string[]>(['']);
-  const [round, setRound] = useState<Round>('eliminatorias');
+  const [assignments, setAssignments] = useState<Record<string, GroupAssignment>>(
+    () => Object.fromEntries(PARTICIPANTS.map((p) => [p.id, null]))
+  );
   const [error, setError] = useState('');
 
-  const addParticipant = (group: 'A' | 'B') => {
-    if (group === 'A') setGroupA([...groupA, '']);
-    else setGroupB([...groupB, '']);
-  };
+  const groupACount = Object.values(assignments).filter((g) => g === 'A').length;
+  const groupBCount = Object.values(assignments).filter((g) => g === 'B').length;
 
-  const removeParticipant = (group: 'A' | 'B', index: number) => {
-    if (group === 'A' && groupA.length > 1) {
-      setGroupA(groupA.filter((_, i) => i !== index));
-    } else if (group === 'B' && groupB.length > 1) {
-      setGroupB(groupB.filter((_, i) => i !== index));
-    }
-  };
-
-  const updateName = (group: 'A' | 'B', index: number, name: string) => {
-    if (group === 'A') {
-      const updated = [...groupA];
-      updated[index] = name;
-      setGroupA(updated);
-    } else {
-      const updated = [...groupB];
-      updated[index] = name;
-      setGroupB(updated);
-    }
+  const cycleGroup = (id: string) => {
+    setError('');
+    setAssignments((prev) => {
+      const current = prev[id];
+      let next: GroupAssignment;
+      if (current === null) {
+        // Try A first, if full try B, if both full stay null
+        if (groupACount < REQUIRED_PER_GROUP) next = 'A';
+        else if (groupBCount < REQUIRED_PER_GROUP) next = 'B';
+        else next = null;
+      } else if (current === 'A') {
+        next = groupBCount < REQUIRED_PER_GROUP ? 'B' : null;
+      } else {
+        next = null;
+      }
+      return { ...prev, [id]: next };
+    });
   };
 
   const handleContinue = () => {
-    const filteredA = groupA.map((n) => n.trim()).filter(Boolean);
-    const filteredB = groupB.map((n) => n.trim()).filter(Boolean);
-
-    if (filteredA.length === 0 || filteredB.length === 0) {
-      setError('Cada grupo necesita al menos un participante.');
+    if (groupACount !== REQUIRED_PER_GROUP || groupBCount !== REQUIRED_PER_GROUP) {
+      setError(`Cada grupo debe tener exactamente ${REQUIRED_PER_GROUP} participantes.`);
       return;
     }
-    setError('');
-    onContinue(filteredA, filteredB, round);
+    const groupA = PARTICIPANTS.filter((p) => assignments[p.id] === 'A').map((p) => ({ name: p.name, image: p.image }));
+    const groupB = PARTICIPANTS.filter((p) => assignments[p.id] === 'B').map((p) => ({ name: p.name, image: p.image }));
+    onContinue(groupA, groupB);
   };
 
-  const renderGroup = (group: 'A' | 'B', names: string[], gradientFrom: string, gradientTo: string, borderColor: string, textColor: string) => (
-    <motion.div
-      initial={{ opacity: 0, x: group === 'A' ? -40 : 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 0.3, type: 'spring' }}
-      className="flex-1 min-w-0"
-    >
-      <div className={`bg-dark-card/80 backdrop-blur-sm border-2 ${borderColor} rounded-3xl p-6 shadow-xl`}>
-        {/* Group header */}
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <div className={`w-12 h-12 rounded-2xl bg-linear-to-br ${gradientFrom} ${gradientTo} flex items-center justify-center text-white font-extrabold text-xl shadow-lg`}>
-            {group}
-          </div>
-          <h3 className={`text-2xl font-extrabold ${textColor}`}>
-            Grupo {group}
-          </h3>
-        </div>
+  const getCardStyle = (group: GroupAssignment) => {
+    if (group === 'A') return 'border-blue-500 bg-blue-500/10 shadow-blue-500/20 shadow-lg';
+    if (group === 'B') return 'border-purple-500 bg-purple-500/10 shadow-purple-500/20 shadow-lg';
+    return 'border-gray-game/20 bg-dark-card/60 hover:border-gold/40';
+  };
 
-        <div className="space-y-3">
-          <AnimatePresence>
-            {names.map((name, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20, height: 0 }}
-                animate={{ opacity: 1, x: 0, height: 'auto' }}
-                exit={{ opacity: 0, x: 20, height: 0 }}
-                className="flex gap-2"
-              >
-                <div className="relative flex-1">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-game/40 text-sm font-semibold">
-                    {index + 1}.
-                  </span>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => updateName(group, index, e.target.value)}
-                    placeholder={`Participante ${index + 1}`}
-                    className="w-full bg-dark-light/80 border-2 border-gray-game/15 rounded-xl pl-10 pr-4 py-2.5 md:py-3 text-white text-base md:text-lg placeholder-gray-game/30 focus:border-gold/60 focus:outline-none focus:shadow-lg focus:shadow-gold/10 transition-all"
-                  />
-                </div>
-                {names.length > 1 && (
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => removeParticipant(group, index)}
-                    className="w-10 h-10 self-center bg-incorrect/10 border border-incorrect/30 rounded-lg text-incorrect hover:bg-incorrect/20 transition-colors flex items-center justify-center font-medium text-sm"
-                  >
-                    ✕
-                  </motion.button>
-                )}
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+  const getBadge = (group: GroupAssignment) => {
+    if (group === 'A')
+      return (
+        <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center shadow-lg z-10">
+          A
+        </span>
+      );
+    if (group === 'B')
+      return (
+        <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-purple-500 text-white text-xs font-bold flex items-center justify-center shadow-lg z-10">
+          B
+        </span>
+      );
+    return null;
+  };
 
-        <motion.button
-          whileHover={{ scale: 1.02, y: -1 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => addParticipant(group)}
-          className={`mt-4 w-full py-2.5 border border-dashed ${borderColor} rounded-lg ${textColor} font-medium text-sm hover:bg-white/5 transition-colors`}
-        >
-          + Agregar participante
-        </motion.button>
-      </div>
-    </motion.div>
-  );
+  const renderParticipantCard = (participant: ParticipantOption, index: number) => {
+    const group = assignments[participant.id];
+    return (
+      <motion.button
+        key={participant.id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 + index * 0.05, type: 'spring' }}
+        whileHover={{ scale: 1.03, y: -4 }}
+        whileTap={{ scale: 0.97 }}
+        onClick={() => cycleGroup(participant.id)}
+        className={`relative rounded-2xl border-2 p-3 transition-all duration-300 cursor-pointer flex flex-col items-center gap-2 ${getCardStyle(group)}`}
+      >
+        {getBadge(group)}
+        <div className="w-full aspect-square rounded-xl overflow-hidden bg-dark-light/50">
+          {participant.image ? (
+            <img
+              src={participant.image}
+              alt={participant.name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gold-dark/20 to-gold/10">
+              <span className="text-4xl font-extrabold text-gold/40">
+                {participant.name.charAt(0)}
+              </span>
+            </div>
+          )}
+        </div>
+        <span className="text-white font-semibold text-sm text-center leading-tight truncate w-full">
+          {participant.name}
+        </span>
+      </motion.button>
+    );
+  };
 
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-center relative overflow-hidden">
       <AnimatedBackground />
 
-      <div className="relative z-10 w-full max-w-4xl px-4 overflow-y-auto max-h-screen py-8">
+      <div className="relative z-10 w-full max-w-5xl px-4 overflow-y-auto max-h-screen py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-6"
         >
           <motion.span
             initial={{ scale: 0 }}
@@ -137,63 +131,43 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
           >
             ⚔️
           </motion.span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-gold-dark via-gold to-gold-light mb-3">
-            Configuración de Grupos
+          <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-gold-dark via-gold to-gold-light mb-2">
+            Arma los Grupos
           </h2>
-          <p className="text-gray-game text-lg">
-            Ingresa los nombres de los participantes
+          <p className="text-gray-game text-base md:text-lg">
+            Toca cada participante para asignarlo a un grupo
           </p>
         </motion.div>
 
-        {/* Round selector */}
+        {/* Group counters */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex justify-center gap-3 mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex justify-center gap-6 mb-6"
         >
-          {([
-            { value: 'eliminatorias' as Round, label: 'Eliminatorias', icon: '⚔️' },
-            { value: 'final' as Round, label: 'Final', icon: '🏆' },
-          ]).map((option) => (
-            <motion.button
-              key={option.value}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                if (option.value === 'final') {
-                  setError('La ronda Final se encuentra en construcción. Próximamente...');
-                  return;
-                }
-                setError('');
-                setRound(option.value);
-              }}
-              className={`px-5 py-3 rounded-xl font-bold text-sm md:text-base transition-all border-2 ${
-                round === option.value
-                  ? 'bg-gold/20 border-gold text-gold shadow-lg shadow-gold/20'
-                  : 'bg-dark-card/80 border-gray-game/20 text-gray-game hover:border-gold/40'
-              }`}
-            >
-              {option.icon} {option.label}
-            </motion.button>
-          ))}
+          <div className={`flex items-center gap-2 px-5 py-2 rounded-xl border-2 transition-all ${groupACount === REQUIRED_PER_GROUP ? 'border-blue-500 bg-blue-500/15' : 'border-blue-500/30 bg-blue-500/5'}`}>
+            <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white font-extrabold text-sm">
+              A
+            </div>
+            <span className={`font-bold text-lg ${groupACount === REQUIRED_PER_GROUP ? 'text-blue-400' : 'text-blue-400/50'}`}>
+              {groupACount}/{REQUIRED_PER_GROUP}
+            </span>
+          </div>
+
+          <div className={`flex items-center gap-2 px-5 py-2 rounded-xl border-2 transition-all ${groupBCount === REQUIRED_PER_GROUP ? 'border-purple-500 bg-purple-500/15' : 'border-purple-500/30 bg-purple-500/5'}`}>
+            <div className="w-8 h-8 rounded-lg bg-purple-500 flex items-center justify-center text-white font-extrabold text-sm">
+              B
+            </div>
+            <span className={`font-bold text-lg ${groupBCount === REQUIRED_PER_GROUP ? 'text-purple-400' : 'text-purple-400/50'}`}>
+              {groupBCount}/{REQUIRED_PER_GROUP}
+            </span>
+          </div>
         </motion.div>
 
-        {/* Groups side by side */}
-        <div className="flex flex-col md:flex-row gap-6 mb-8">
-          {renderGroup('A', groupA, 'from-blue-500', 'to-blue-700', 'border-blue-500/30', 'text-blue-400')}
-
-          {/* VS divider */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
-            className="hidden md:flex items-center"
-          >
-            <span className="text-gold/40 text-3xl font-extrabold">VS</span>
-          </motion.div>
-
-          {renderGroup('B', groupB, 'from-purple-500', 'to-purple-700', 'border-purple-500/30', 'text-purple-400')}
+        {/* Participant grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
+          {PARTICIPANTS.map((p, i) => renderParticipantCard(p, i))}
         </div>
 
         {/* Error */}
@@ -228,16 +202,26 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
             Volver
           </motion.button>
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: '0 0 50px rgba(219, 163, 71, 0.4)' }}
+            whileHover={{
+              scale: groupACount === REQUIRED_PER_GROUP && groupBCount === REQUIRED_PER_GROUP ? 1.05 : 1,
+              boxShadow: groupACount === REQUIRED_PER_GROUP && groupBCount === REQUIRED_PER_GROUP ? '0 0 50px rgba(219, 163, 71, 0.4)' : 'none',
+            }}
             whileTap={{ scale: 0.95 }}
             onClick={handleContinue}
-            className="relative px-8 py-3 bg-linear-to-r from-gold-dark via-gold to-gold-light text-dark font-semibold text-base rounded-xl shadow-lg shadow-gold/25 overflow-hidden"
+            className={`relative px-8 py-3 rounded-xl font-semibold text-base overflow-hidden transition-all ${
+              groupACount === REQUIRED_PER_GROUP && groupBCount === REQUIRED_PER_GROUP
+                ? 'bg-linear-to-r from-gold-dark via-gold to-gold-light text-dark shadow-lg shadow-gold/25'
+                : 'bg-gray-game/20 text-gray-game/40 cursor-not-allowed'
+            }`}
+            disabled={groupACount !== REQUIRED_PER_GROUP || groupBCount !== REQUIRED_PER_GROUP}
           >
-            <motion.div
-              className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
-              animate={{ x: ['-200%', '200%'] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 1.5 }}
-            />
+            {groupACount === REQUIRED_PER_GROUP && groupBCount === REQUIRED_PER_GROUP && (
+              <motion.div
+                className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
+                animate={{ x: ['-200%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1.5 }}
+              />
+            )}
             <span className="relative z-10">Comenzar juego</span>
           </motion.button>
         </motion.div>

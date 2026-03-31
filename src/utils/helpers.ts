@@ -1,4 +1,5 @@
-import type { Question, Round } from './types';
+import type { Question, Round, Difficulty } from './types';
+import { DIFFICULTY_ORDER } from './types';
 
 export function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
@@ -7,6 +8,36 @@ export function shuffleArray<T>(array: T[]): T[] {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
+}
+
+export function pickProgressiveQuestions(
+  allQuestions: Question[],
+  excludeIndices: number[],
+  group?: 'A' | 'B',
+  round?: Round
+): { questions: Question[]; indices: number[] } {
+  const available = allQuestions
+    .map((q, i) => ({ question: q, index: i }))
+    .filter((item) => !excludeIndices.includes(item.index))
+    .filter((item) => !group || item.question.group === group)
+    .filter((item) => !round || item.question.round === round);
+
+  const questions: Question[] = [];
+  const indices: number[] = [];
+
+  for (const difficulty of DIFFICULTY_ORDER) {
+    const matching = available.filter(
+      (item) => item.question.difficulty === difficulty && !indices.includes(item.index)
+    );
+
+    if (matching.length > 0) {
+      const picked = matching[Math.floor(Math.random() * matching.length)];
+      questions.push(picked.question);
+      indices.push(picked.index);
+    }
+  }
+
+  return { questions, indices };
 }
 
 export function pickRandomQuestions(
@@ -62,4 +93,15 @@ export function generateFriendSuggestion(correctIndex: number): number {
 
 export function formatTime(seconds: number): string {
   return `${seconds}s`;
+}
+
+export function getPointsForQuestion(question: Question): number {
+  const pointsMap: Record<Difficulty, number> = {
+    facil: 1,
+    medio_facil: 2,
+    intermedio: 3,
+    medio_dificil: 4,
+    dificil: 5,
+  };
+  return question.difficulty ? pointsMap[question.difficulty] : 1;
 }

@@ -6,7 +6,8 @@
     "explanation": "La Biblia protestante contiene 66 libros: 39 del Antiguo Testamento y 27 del Nuevo Testamento.",
     "verse": "2 Timoteo 3:16",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Cuántos libros tiene el Nuevo Testamento?",
@@ -15,7 +16,8 @@
     "explanation": "El Nuevo Testamento contiene 27 libros, desde el Evangelio de Mateo hasta Apocalipsis.",
     "verse": "2 Timoteo 3:16",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Cómo se llamaban los hijos de Noé?",
@@ -24,7 +26,8 @@
     "explanation": "Los tres hijos de Noé fueron Sem, Cam y Jafet, quienes repoblaron la tierra después del diluvio.",
     "verse": "Génesis 6:10",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
   },
   {
     "question": "¿Cómo se llamó el apóstol que reemplazó a Judas Iscariote?",
@@ -33,7 +36,8 @@
     "explanation": "Matías fue escogido por sorteo entre los discípulos para reemplazar a Judas Iscariote como uno de los doce apóstoles.",
     "verse": "Hechos 1:26",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿Quién se cayó y murió mientras el apóstol Pablo predicaba?",
@@ -42,7 +46,8 @@
     "explanation": "Eutico se durmió mientras Pablo predicaba en un tercer piso, cayó por la ventana y murió, pero Pablo lo resucitó.",
     "verse": "Hechos 20:9-10",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿A quién le habló un asna?",
@@ -51,7 +56,8 @@
     "explanation": "El asna de Balaam habló por intervención divina cuando vio al ángel del Señor bloqueando el camino.",
     "verse": "Números 22:28",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
   },
   {
     "question": "¿Cuál es el capítulo más largo de la Biblia?",
@@ -60,7 +66,8 @@
     "explanation": "El Salmo 119 es el capítulo más largo de la Biblia con 176 versículos, dedicado a la Palabra de Dios.",
     "verse": "Salmos 119:105",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿Cómo se llamó la reina que perdió su puesto por desobedecer a su esposo el rey?",
@@ -69,7 +76,8 @@
     "explanation": "La reina Vasti fue destituida por el rey Asuero cuando se negó a presentarse ante él y sus invitados durante un banquete.",
     "verse": "Ester 1:12-19",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Cómo se llamaban los amigos de Daniel?",
@@ -78,7 +86,8 @@
     "explanation": "Sadrac, Mesac y Abed-nego fueron los nombres babilónicos de los tres amigos hebreos de Daniel que sobrevivieron al horno de fuego.",
     "verse": "Daniel 3:12-30",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿Quién ayudó a Jesús a cargar su cruz?",
@@ -87,7 +96,8 @@
     "explanation": "Simón de Cirene ayudó a Jesús en el camino al Calvario cargando su cruz.",
     "verse": "Mateo 27:32",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Quiénes eran llamados los hijos del trueno?",
@@ -96,7 +106,8 @@
     "explanation": "Jesús les puso a Santiago y Juan, hijos de Zebedeo, el sobrenombre de Boanerges, que significa 'hijos del trueno'.",
     "verse": "Marcos 3:17",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
   },
   {
     "question": "¿A quién usó Dios para abrir el río Jordán?",
@@ -105,7 +116,8 @@
     "explanation": "Dios usó a Josué para abrir las aguas del río Jordán, permitiendo que el pueblo de Israel cruzara en seco hacia la tierra prometida.",
     "verse": "Josué 3:14-17",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿Quién colocó una señal del vellón a Dios?",
@@ -114,7 +126,8 @@
     "explanation": "Gedeón pidió a Dios una señal usando un vellón de lana: primero que solo el vellón amaneciera mojado, y luego que solo el suelo estuviera mojado.",
     "verse": "Jueces 6:36-40",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿Quién fue la esposa de Moisés?",
@@ -123,7 +136,8 @@
     "explanation": "Séfora, hija de Jetro sacerdote de Madián, fue la esposa de Moisés.",
     "verse": "Éxodo 2:21",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿A qué profeta le tocó casarse con una ramera?",
@@ -132,7 +146,8 @@
     "explanation": "Dios le ordenó al profeta Oseas casarse con Gómer, una mujer promiscua, como símbolo de la infidelidad de Israel hacia Dios.",
     "verse": "Oseas 1:2-3",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Cuántos hijos de Job murieron en un mismo día?",
@@ -141,7 +156,8 @@
     "explanation": "Los 10 hijos de Job (7 varones y 3 mujeres) murieron cuando un gran viento derribó la casa donde estaban reunidos.",
     "verse": "Job 1:2, 18-19",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿Cómo se llamaba la tierra donde habitaba Job?",
@@ -150,7 +166,8 @@
     "explanation": "Job vivía en la tierra de Uz, una región que se cree estaba ubicada al este del río Jordán.",
     "verse": "Job 1:1",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Quién hizo flotar un hacha?",
@@ -159,7 +176,8 @@
     "explanation": "El profeta Eliseo hizo flotar un hacha de hierro que había caído al río Jordán, lanzando un palo al agua.",
     "verse": "2 Reyes 6:5-6",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Cuántas tinajas de agua convirtió Jesús en vino en las bodas de Caná?",
@@ -168,7 +186,8 @@
     "explanation": "Jesús convirtió el agua de 6 tinajas de piedra en vino durante las bodas de Caná, su primer milagro.",
     "verse": "Juan 2:6-9",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Desde qué lugar recibió el apóstol Juan la visión del Apocalipsis?",
@@ -177,7 +196,8 @@
     "explanation": "El apóstol Juan estaba desterrado en la isla de Patmos cuando recibió la revelación de Jesucristo que escribió en el libro de Apocalipsis.",
     "verse": "Apocalipsis 1:9",
     "group": "A",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
   },
   {
     "question": "¿Cuántos libros tiene el Antiguo Testamento?",
@@ -186,7 +206,8 @@
     "explanation": "El Antiguo Testamento de la Biblia protestante contiene 39 libros, desde Génesis hasta Malaquías.",
     "verse": "2 Timoteo 3:16",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Cómo se llamó el profeta que Dios utilizó para sanar a Naamán?",
@@ -195,7 +216,8 @@
     "explanation": "El profeta Eliseo le indicó a Naamán, comandante del ejército sirio, que se sumergiera siete veces en el río Jordán para ser sanado de su lepra.",
     "verse": "2 Reyes 5:10-14",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿Quién oró para que no lloviera y no llovió, y luego oró para que lloviera y llovió?",
@@ -204,7 +226,8 @@
     "explanation": "El profeta Elías oró y no llovió durante tres años y medio, luego oró nuevamente y Dios envió lluvia sobre la tierra.",
     "verse": "Santiago 5:17-18",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
   },
   {
     "question": "¿En qué monte reposó el arca de Noé?",
@@ -213,7 +236,8 @@
     "explanation": "Después del diluvio, el arca de Noé reposó sobre los montes de Ararat, ubicados en la actual Turquía.",
     "verse": "Génesis 8:4",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Cuál es el capítulo más corto de la Biblia?",
@@ -222,7 +246,8 @@
     "explanation": "El Salmo 117 es el capítulo más corto de la Biblia con solo 2 versículos, y también es el capítulo central de la Biblia.",
     "verse": "Salmos 117:1-2",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿Quién murió en una horca que él mismo había preparado?",
@@ -231,7 +256,8 @@
     "explanation": "Amán, oficial del rey Asuero, preparó una horca para colgar a Mardoqueo, pero terminó siendo colgado él mismo en ella.",
     "verse": "Ester 7:9-10",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Cómo se llama el río donde se sumergió Naamán para ser sano de su lepra?",
@@ -240,7 +266,8 @@
     "explanation": "Naamán se sumergió siete veces en el río Jordán siguiendo las instrucciones del profeta Eliseo y quedó completamente sano de su lepra.",
     "verse": "2 Reyes 5:14",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿Cuáles de estos hacen parte de los libros poéticos de la Biblia?",
@@ -249,7 +276,8 @@
     "explanation": "Los libros poéticos de la Biblia son Job, Salmos, Proverbios, Eclesiastés y Cantares de Salomón.",
     "verse": "Eclesiastés 1:1",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿Cuáles de estos hacen parte de los libros históricos de la Biblia?",
@@ -258,7 +286,8 @@
     "explanation": "Rut, Josué, Jueces, 1 Samuel y 2 Samuel son libros históricos del Antiguo Testamento que narran la historia del pueblo de Israel.",
     "verse": "Josué 1:1",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿A cuántas iglesias habla Juan en el Apocalipsis?",
@@ -267,7 +296,8 @@
     "explanation": "Juan escribe a 7 iglesias de Asia Menor: Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea.",
     "verse": "Apocalipsis 1:11",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
   },
   {
     "question": "¿Quién murió desnucado y cuál era su oficio?",
@@ -276,7 +306,8 @@
     "explanation": "Elí, sumo sacerdote de Israel, al escuchar que el arca del pacto había sido capturada y sus hijos habían muerto, cayó de su silla hacia atrás, se quebró la nuca y murió.",
     "verse": "1 Samuel 4:18",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Qué profesión tenía Lucas?",
@@ -285,7 +316,8 @@
     "explanation": "Lucas, autor del Evangelio que lleva su nombre y del libro de Hechos, era médico de profesión.",
     "verse": "Colosenses 4:14",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
   },
   {
     "question": "¿A quién dirige Juan su tercera carta?",
@@ -294,7 +326,8 @@
     "explanation": "La tercera epístola de Juan está dirigida a Gayo, un creyente fiel a quien Juan elogia por su hospitalidad.",
     "verse": "3 Juan 1:1",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Qué libro de la Biblia comienza con: 'En el primer tratado, oh Teófilo'?",
@@ -303,7 +336,8 @@
     "explanation": "El libro de Hechos de los Apóstoles comienza con esas palabras, haciendo referencia al Evangelio de Lucas como el 'primer tratado' dirigido a Teófilo.",
     "verse": "Hechos 1:1",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "dificil"
   },
   {
     "question": "¿Qué fue primero, el diluvio o la torre de Babel?",
@@ -312,7 +346,8 @@
     "explanation": "Primero ocurrió el diluvio universal en tiempos de Noé, y después sus descendientes intentaron construir la torre de Babel.",
     "verse": "Génesis 7-11",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Cómo se llamó el profeta que amonestó a David?",
@@ -321,7 +356,8 @@
     "explanation": "El profeta Natán confrontó al rey David después de su pecado con Betsabé, usando la parábola de la ovejita.",
     "verse": "2 Samuel 12:1-7",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿Cómo se llamaba la hermana de Absalón?",
@@ -330,7 +366,8 @@
     "explanation": "Tamar era hermana de Absalón e hija del rey David. Absalón vengó la deshonra que sufrió su hermana.",
     "verse": "2 Samuel 13:1",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_dificil"
   },
   {
     "question": "¿De qué sanó Jesús a la suegra de Pedro?",
@@ -339,7 +376,8 @@
     "explanation": "Jesús sanó a la suegra de Pedro de una fiebre. La tomó de la mano, la fiebre la dejó y ella comenzó a servirles.",
     "verse": "Marcos 1:30-31",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "facil"
   },
   {
     "question": "¿Para dónde iba Jesús cuando una mujer lo tocó y fue sana?",
@@ -348,7 +386,8 @@
     "explanation": "Jesús iba camino a la casa de Jairo para sanar a su hija cuando la mujer con flujo de sangre lo tocó y fue sanada.",
     "verse": "Marcos 5:22-34",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "intermedio"
   },
   {
     "question": "¿Con qué palabra termina el Nuevo Testamento?",
@@ -357,6 +396,117 @@
     "explanation": "El Nuevo Testamento termina con la palabra 'Amén' al final del libro de Apocalipsis.",
     "verse": "Apocalipsis 22:21",
     "group": "B",
-    "round": "eliminatorias"
+    "round": "eliminatorias",
+    "difficulty": "medio_facil"
+  },
+  {
+    "question": "¿Cuántos varones conformaron el primer grupo de diáconos mencionado en el libro de Hechos?",
+    "options": ["5", "7", "12", "10"],
+    "correct": 1,
+    "explanation": "Fueron escogidos 7 varones de buen testimonio, llenos del Espíritu Santo y de sabiduría, para servir como los primeros diáconos.",
+    "verse": "Hechos 6:3",
+    "group": "A",
+    "round": "final",
+    "difficulty": "facil"
+  },
+  {
+    "question": "¿Cuál de estos personajes hizo parte del primer cuerpo de diáconos nombrado en las Sagradas Escrituras?",
+    "options": ["Timoteo", "Bernabé", "Timón", "Silas"],
+    "correct": 2,
+    "explanation": "Timón fue uno de los 7 diáconos elegidos junto a Esteban, Felipe, Prócoro, Nicanor, Parmenas y Nicolás.",
+    "verse": "Hechos 6:5",
+    "group": "A",
+    "round": "final",
+    "difficulty": "medio_facil"
+  },
+  {
+    "question": "¿Cuál de los 4 evangelios narra la resurrección de Lázaro?",
+    "options": ["Mateo", "Marcos", "Lucas", "Juan"],
+    "correct": 3,
+    "explanation": "Solo el Evangelio de Juan narra la resurrección de Lázaro en Betania, uno de los milagros más significativos de Jesús.",
+    "verse": "Juan 11:1-44",
+    "group": "A",
+    "round": "final",
+    "difficulty": "intermedio"
+  },
+  {
+    "question": "¿Cuántos proverbios pronunció Salomón?",
+    "options": ["1000", "2000", "3000", "5000"],
+    "correct": 2,
+    "explanation": "La Biblia registra que Salomón pronunció 3.000 proverbios, aunque no todos fueron incluidos en el libro de Proverbios.",
+    "verse": "1 Reyes 4:32",
+    "group": "A",
+    "round": "final",
+    "difficulty": "medio_dificil"
+  },
+  {
+    "question": "¿Cuántos cantares compuso Salomón?",
+    "options": ["500", "1005", "750", "1500"],
+    "correct": 1,
+    "explanation": "Salomón compuso 1.005 cantares, de los cuales el más conocido es el Cantar de los Cantares.",
+    "verse": "1 Reyes 4:32",
+    "group": "A",
+    "round": "final",
+    "difficulty": "dificil"
+  },
+  {
+    "question": "¿En qué monte reposó el arca de Noé?",
+    "options": ["Monte Sinaí", "Monte Hermón", "Monte Carmelo", "Monte Ararat"],
+    "correct": 3,
+    "explanation": "Después del diluvio, el arca de Noé reposó sobre los montes de Ararat, ubicados en la actual Turquía.",
+    "verse": "Génesis 8:4",
+    "group": "B",
+    "round": "final",
+    "difficulty": "facil"
+  },
+  {
+    "question": "¿Quién dijo: 'Ni las hojas de los árboles se mueven sin la voluntad de Dios'?",
+    "options": ["Abraham", "Miguel de Cervantes Saavedra", "Moisés", "Salomón"],
+    "correct": 1,
+    "explanation": "Esta famosa frase es atribuida al escritor español Miguel de Cervantes Saavedra, autor de Don Quijote de la Mancha. No es una cita bíblica.",
+    "verse": "Don Quijote de la Mancha",
+    "group": "B",
+    "round": "final",
+    "difficulty": "medio_facil"
+  },
+  {
+    "question": "¿Con qué palabra termina el Antiguo Testamento en su versión Reina Valera 1960?",
+    "options": ["Amén", "Maldición", "Gloria", "Paz"],
+    "correct": 1,
+    "explanation": "El último versículo de Malaquías 4:6 en la RV1960 termina con la palabra 'maldición': '...no sea que yo venga y hiera la tierra con maldición'.",
+    "verse": "Malaquías 4:6",
+    "group": "B",
+    "round": "final",
+    "difficulty": "intermedio"
+  },
+  {
+    "question": "¿Cuántos años vivió Matusalén?",
+    "options": ["900", "969", "950", "930"],
+    "correct": 1,
+    "explanation": "Matusalén vivió 969 años, siendo la persona más longeva registrada en la Biblia.",
+    "verse": "Génesis 5:27",
+    "group": "B",
+    "round": "final",
+    "difficulty": "medio_dificil"
+  },
+  {
+    "question": "¿De quién era hijo Balac, el rey de Moab que pidió a Balaam que maldijera a Israel?",
+    "options": ["Zipor", "Séfora", "Balaam", "Jetro"],
+    "correct": 0,
+    "explanation": "Balac hijo de Zipor era rey de Moab en aquel tiempo y envió mensajeros a Balaam para que maldijera al pueblo de Israel.",
+    "verse": "Números 22:2-4",
+    "group": "B",
+    "round": "final",
+    "difficulty": "dificil"
+  },
+  {
+    "question": "¿Quiénes fueron Bildad, Zofar y Elifaz?",
+    "options": ["Hijos de Jacob", "Reyes de Israel", "Amigos de Job", "Profetas menores"],
+    "correct": 2,
+    "explanation": "Bildad, Zofar y Elifaz fueron los tres amigos que vinieron a consolar a Job en su sufrimiento, aunque sus consejos no siempre fueron acertados.",
+    "verse": "Job 2:11",
+    "group": "A",
+    "round": "final",
+    "difficulty": "intermedio"
   }
 ]

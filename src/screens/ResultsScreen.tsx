@@ -1,19 +1,23 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedBackground from '../components/AnimatedBackground';
-import type { Participant } from '../utils/types';
+import type { Participant, Round } from '../utils/types';
+import { MAX_ROUND_SCORE } from '../utils/types';
 import type { SoundType } from '../hooks/useSound';
 
 interface ResultsScreenProps {
   participants: Participant[];
+  round: Round;
+  onStartFinal: (finalistA: string, finalistB: string) => void;
   onRestart: () => void;
   playSound: (sound: SoundType) => void;
 }
 
-export default function ResultsScreen({ participants, onRestart, playSound }: ResultsScreenProps) {
+export default function ResultsScreen({ participants, round, onStartFinal, onRestart, playSound }: ResultsScreenProps) {
   useEffect(() => {
     playSound('celebration');
   }, []);
+
   const sorted = [...participants].sort((a, b) => {
     if (b.score !== a.score) return b.score - a.score;
     return a.totalTime - b.totalTime;
@@ -23,11 +27,31 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
   const groupBTotal = participants.filter((p) => p.group === 'B').reduce((s, p) => s + p.score, 0);
   const winnerGroup = groupATotal > groupBTotal ? 'A' : groupBTotal > groupATotal ? 'B' : null;
 
+  const isEliminatorias = round === 'eliminatorias';
+
+  // Best player from each group (for final qualification)
+  const bestA = [...participants].filter((p) => p.group === 'A').sort((a, b) => b.score !== a.score ? b.score - a.score : a.totalTime - b.totalTime)[0];
+  const bestB = [...participants].filter((p) => p.group === 'B').sort((a, b) => b.score !== a.score ? b.score - a.score : a.totalTime - b.totalTime)[0];
+
   const getMedal = (index: number) => {
     if (index === 0) return '🥇';
     if (index === 1) return '🥈';
     if (index === 2) return '🥉';
     return `${index + 1}`;
+  };
+
+  const groupACount = participants.filter((p) => p.group === 'A').length;
+  const groupBCount = participants.filter((p) => p.group === 'B').length;
+  const groupAMax = groupACount * MAX_ROUND_SCORE;
+  const groupBMax = groupBCount * MAX_ROUND_SCORE;
+
+  // Final: the overall winner
+  const finalWinner = !isEliminatorias ? sorted[0] : null;
+
+  const handleStartFinal = () => {
+    if (bestA && bestB) {
+      onStartFinal(bestA.name, bestB.name);
+    }
   };
 
   return (
@@ -56,7 +80,7 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
             />
           </motion.div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-gold-dark via-gold to-gold-light mb-2">
-            Resultados Finales
+            {isEliminatorias ? 'Resultados Eliminatorias' : 'Resultados de la Gran Final'}
           </h1>
         </motion.div>
 
@@ -79,6 +103,7 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
             <p className={`text-3xl md:text-5xl font-extrabold ${winnerGroup === 'A' ? 'text-gold' : 'text-white'}`}>
               {groupATotal}
             </p>
+            <p className="text-gray-game text-xs mt-1">/ {groupAMax} pts</p>
             {winnerGroup === 'A' && (
               <motion.p
                 initial={{ opacity: 0 }}
@@ -112,6 +137,7 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
             <p className={`text-3xl md:text-5xl font-extrabold ${winnerGroup === 'B' ? 'text-gold' : 'text-white'}`}>
               {groupBTotal}
             </p>
+            <p className="text-gray-game text-xs mt-1">/ {groupBMax} pts</p>
             {winnerGroup === 'B' && (
               <motion.p
                 initial={{ opacity: 0 }}
@@ -125,11 +151,62 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
           </motion.div>
         </motion.div>
 
+        {/* Eliminatorias: Finalists banner */}
+        {isEliminatorias && bestA && bestB && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="w-full max-w-2xl mb-6"
+          >
+            <div className="bg-dark-card/80 backdrop-blur-sm border-2 border-gold/30 rounded-2xl px-6 py-4 text-center">
+              <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
+                Clasificados a la Gran Final
+              </h3>
+              <div className="flex justify-center gap-4">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                  ⚔️ {bestA.name}
+                  <span className="text-gray-game text-xs">(Grupo A — {bestA.score} pts)</span>
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                  ⚔️ {bestB.name}
+                  <span className="text-gray-game text-xs">(Grupo B — {bestB.score} pts)</span>
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Final: Champion banner */}
+        {!isEliminatorias && finalWinner && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, type: 'spring' }}
+            className="w-full max-w-2xl mb-6"
+          >
+            <div className="bg-dark-card/80 backdrop-blur-sm border-2 border-gold shadow-xl shadow-gold/20 rounded-2xl px-6 py-6 text-center">
+              <motion.span
+                className="text-6xl inline-block mb-2"
+                animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                👑
+              </motion.span>
+              <h3 className="text-gold font-extrabold text-2xl uppercase tracking-wider mb-1">
+                Campeón Absoluto
+              </h3>
+              <p className="text-white font-extrabold text-3xl mb-1">{finalWinner.name}</p>
+              <p className="text-gold text-lg font-bold">{finalWinner.score}/{MAX_ROUND_SCORE} pts</p>
+            </div>
+          </motion.div>
+        )}
+
         {/* Ranking table */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.7 }}
           className="w-full max-w-2xl"
         >
           <h2 className="text-xl font-extrabold text-gold mb-4 text-center uppercase tracking-[0.15em]">
@@ -157,7 +234,7 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
                   key={`${participant.name}-${participant.group}`}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.7 + index * 0.1, type: 'spring' }}
+                  transition={{ delay: 0.8 + index * 0.1, type: 'spring' }}
                   className={`grid grid-cols-12 gap-1 md:gap-2 px-3 md:px-5 py-3 md:py-4 items-center border-b border-gray-game/10 last:border-b-0 ${
                     isFirst ? 'bg-gold/8' : ''
                   }`}
@@ -178,7 +255,7 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
                     </span>
                   </div>
                   <div className={`col-span-2 text-center font-extrabold text-base md:text-xl ${isFirst ? 'text-gold' : 'text-white'}`}>
-                    {participant.score}/5
+                    {participant.score}/{MAX_ROUND_SCORE}
                   </div>
                   <div className="col-span-3 text-center text-gray-game font-semibold text-sm md:text-base">
                     {avgTime}s
@@ -189,23 +266,51 @@ export default function ResultsScreen({ participants, onRestart, playSound }: Re
           </div>
         </motion.div>
 
-        {/* Restart button */}
-        <motion.button
+        {/* Action button */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          whileHover={{ scale: 1.08, boxShadow: '0 0 60px rgba(219, 163, 71, 0.5)' }}
-          whileTap={{ scale: 0.92 }}
-          onClick={onRestart}
-          className="relative mt-8 mb-6 px-8 py-3 bg-linear-to-r from-gold-dark via-gold to-gold-light text-dark font-semibold text-base rounded-xl shadow-lg shadow-gold/30 uppercase tracking-wider overflow-hidden"
+          className="mt-8 mb-6"
         >
-          <motion.div
-            className="absolute inset-0 bg-linear-to-r from-transparent via-white/25 to-transparent"
-            animate={{ x: ['-200%', '200%'] }}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-          />
-          <span className="relative z-10">Jugar de nuevo</span>
-        </motion.button>
+          {isEliminatorias ? (
+            <motion.button
+              whileHover={{ scale: 1.08, boxShadow: '0 0 80px rgba(219, 163, 71, 0.6)' }}
+              whileTap={{ scale: 0.92 }}
+              onClick={handleStartFinal}
+              className="relative group px-10 py-4 bg-linear-to-r from-gold-dark via-gold to-gold-light text-dark font-extrabold text-lg rounded-2xl shadow-2xl shadow-gold/40 uppercase tracking-wider overflow-hidden border-2 border-gold-light/50"
+            >
+              <motion.div
+                className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent"
+                animate={{ x: ['-200%', '200%'] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 0.5 }}
+              />
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)' }}
+              />
+              <span className="relative z-10 flex items-center gap-3">
+                <span className="text-2xl">⚔️</span>
+                Pasar a la Gran Final
+                <span className="text-2xl">🏆</span>
+              </span>
+            </motion.button>
+          ) : (
+            <motion.button
+              whileHover={{ scale: 1.08, boxShadow: '0 0 60px rgba(219, 163, 71, 0.5)' }}
+              whileTap={{ scale: 0.92 }}
+              onClick={onRestart}
+              className="relative px-8 py-3 bg-linear-to-r from-gold-dark via-gold to-gold-light text-dark font-semibold text-base rounded-xl shadow-lg shadow-gold/30 uppercase tracking-wider overflow-hidden"
+            >
+              <motion.div
+                className="absolute inset-0 bg-linear-to-r from-transparent via-white/25 to-transparent"
+                animate={{ x: ['-200%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+              />
+              <span className="relative z-10">Jugar de nuevo</span>
+            </motion.button>
+          )}
+        </motion.div>
 
         {/* Footer verse */}
         <motion.p

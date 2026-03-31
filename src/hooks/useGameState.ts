@@ -1,12 +1,12 @@
 import { useReducer, useCallback } from 'react';
-import type { GameState, GameAction, Participant } from '../utils/types';
+import type { GameState, GameAction, Participant, ParticipantEntry } from '../utils/types';
 import questionsData from '../data/questions.json';
-import { pickRandomQuestions, generateAudienceResults, generateFriendSuggestion } from '../utils/helpers';
+import { pickProgressiveQuestions, pickRandomQuestions, generateAudienceResults, generateFriendSuggestion, getPointsForQuestion } from '../utils/helpers';
 import type { Question } from '../utils/types';
 
 const allQuestions = questionsData as Question[];
 const QUESTIONS_PER_PARTICIPANT = 5;
-const TIME_PER_QUESTION = 15;
+const TIME_PER_QUESTION = 30;
 
 const initialState: GameState = {
   screen: 'home',
@@ -28,18 +28,21 @@ const initialState: GameState = {
   isTimerRunning: false,
 };
 
-function buildParticipantOrder(groupA: string[], groupB: string[]): Participant[] {
+function buildParticipantOrder(groupA: ParticipantEntry[], groupB: ParticipantEntry[]): Participant[] {
   const participants: Participant[] = [];
-  for (const name of groupA) {
-    participants.push({ name, group: 'A', score: 0, totalTime: 0, questionsAnswered: 0 });
+  for (const entry of groupA) {
+    participants.push({ name: entry.name, group: 'A', score: 0, totalTime: 0, questionsAnswered: 0, image: entry.image });
   }
-  for (const name of groupB) {
-    participants.push({ name, group: 'B', score: 0, totalTime: 0, questionsAnswered: 0 });
+  for (const entry of groupB) {
+    participants.push({ name: entry.name, group: 'B', score: 0, totalTime: 0, questionsAnswered: 0, image: entry.image });
   }
   return participants;
 }
 
 function loadQuestionsForParticipant(usedIndices: number[], group: 'A' | 'B', round: GameState['round']): { questions: Question[]; indices: number[] } {
+  if (round === 'eliminatorias') {
+    return pickProgressiveQuestions(allQuestions, usedIndices, group, round);
+  }
   return pickRandomQuestions(allQuestions, QUESTIONS_PER_PARTICIPANT, usedIndices, group, round);
 }
 
@@ -85,12 +88,13 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const currentQ = state.currentQuestions[state.currentQuestionIndex];
       const isCorrect = state.selectedAnswer === currentQ.correct;
       const timeSpent = TIME_PER_QUESTION - state.timeLeft;
+      const points = isCorrect ? getPointsForQuestion(currentQ) : 0;
 
       const updatedParticipants = state.participants.map((p, i) => {
         if (i === state.currentParticipantIndex) {
           return {
             ...p,
-            score: p.score + (isCorrect ? 1 : 0),
+            score: p.score + points,
             totalTime: p.totalTime + timeSpent,
             questionsAnswered: p.questionsAnswered + 1,
           };
@@ -201,6 +205,35 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case 'CLOSE_HELP':
       return { ...state, audienceResults: null, friendSuggestion: null };
 
+    case 'START_FINAL': {
+      const prevA = state.participants.find((p) => p.name === action.finalistA);
+      const prevB = state.participants.find((p) => p.name === action.finalistB);
+      const finalists: Participant[] = [
+        { name: action.finalistA, group: 'A', score: 0, totalTime: 0, questionsAnswered: 0, image: prevA?.image ?? null },
+        { name: action.finalistB, group: 'B', score: 0, totalTime: 0, questionsAnswered: 0, image: prevB?.image ?? null },
+      ];
+      const { questions, indices } = loadQuestionsForParticipant([], 'A', 'final');
+      return {
+        ...initialState,
+        screen: 'game',
+        round: 'final',
+        groupA: [{ name: action.finalistA, image: prevA?.image ?? null }],
+        groupB: [{ name: action.finalistB, image: prevB?.image ?? null }],
+        participants: finalists,
+        currentParticipantIndex: 0,
+        currentQuestionIndex: 0,
+        usedQuestionIndices: indices,
+        currentQuestions: questions,
+        selectedAnswer: null,
+        isAnswerRevealed: false,
+        timeLeft: TIME_PER_QUESTION,
+        helps: { statistics: true, callFriend: true, askAudience: true },
+        audienceResults: null,
+        friendSuggestion: null,
+        isTimerRunning: true,
+      };
+    }
+
     case 'RESET_GAME':
       return { ...initialState };
 
@@ -213,7 +246,7 @@ export function useGameState() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   const setScreen = useCallback((screen: GameState['screen']) => dispatch({ type: 'SET_SCREEN', screen }), []);
-  const setGroups = useCallback((groupA: string[], groupB: string[], round: GameState['round']) => dispatch({ type: 'SET_GROUPS', groupA, groupB, round }), []);
+  const setGroups = useCallback((groupA: ParticipantEntry[], groupB: ParticipantEntry[], round: GameState['round']) => dispatch({ type: 'SET_GROUPS', groupA, groupB, round }), []);
   const startGame = useCallback(() => dispatch({ type: 'START_GAME' }), []);
   const selectAnswer = useCallback((index: number) => dispatch({ type: 'SELECT_ANSWER', index }), []);
   const revealAnswer = useCallback(() => dispatch({ type: 'REVEAL_ANSWER' }), []);
@@ -224,6 +257,7 @@ export function useGameState() {
   const useHelpFriend = useCallback(() => dispatch({ type: 'USE_HELP_FRIEND' }), []);
   const useHelpAudience = useCallback(() => dispatch({ type: 'USE_HELP_AUDIENCE' }), []);
   const closeHelp = useCallback(() => dispatch({ type: 'CLOSE_HELP' }), []);
+  const startFinal = useCallback((finalistA: string, finalistB: string) => dispatch({ type: 'START_FINAL', finalistA, finalistB }), []);
   const resetGame = useCallback(() => dispatch({ type: 'RESET_GAME' }), []);
 
   return {
@@ -231,6 +265,7 @@ export function useGameState() {
     setScreen,
     setGroups,
     startGame,
+    startFinal,
     selectAnswer,
     revealAnswer,
     nextTurn,
