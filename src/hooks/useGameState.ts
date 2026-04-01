@@ -1,7 +1,7 @@
 import { useReducer, useCallback } from 'react';
 import type { GameState, GameAction, Participant, ParticipantEntry } from '../utils/types';
 import questionsData from '../data/questions.json';
-import { pickProgressiveQuestions, pickRandomQuestions, generateAudienceResults, generateFriendSuggestion, getPointsForQuestion } from '../utils/helpers';
+import { pickProgressiveQuestions, generateAudienceResults, generateFriendSuggestion, getPointsForQuestion } from '../utils/helpers';
 import type { Question } from '../utils/types';
 
 const allQuestions = questionsData as Question[];
@@ -29,21 +29,22 @@ const initialState: GameState = {
 };
 
 function buildParticipantOrder(groupA: ParticipantEntry[], groupB: ParticipantEntry[]): Participant[] {
+  // Intercalate A-B-A-B respecting selection order within each group
   const participants: Participant[] = [];
-  for (const entry of groupA) {
-    participants.push({ name: entry.name, group: 'A', score: 0, totalTime: 0, questionsAnswered: 0, image: entry.image });
-  }
-  for (const entry of groupB) {
-    participants.push({ name: entry.name, group: 'B', score: 0, totalTime: 0, questionsAnswered: 0, image: entry.image });
+  const maxLen = Math.max(groupA.length, groupB.length);
+  for (let i = 0; i < maxLen; i++) {
+    if (i < groupA.length) {
+      participants.push({ name: groupA[i].name, group: 'A', score: 0, totalTime: 0, questionsAnswered: 0, image: groupA[i].image });
+    }
+    if (i < groupB.length) {
+      participants.push({ name: groupB[i].name, group: 'B', score: 0, totalTime: 0, questionsAnswered: 0, image: groupB[i].image });
+    }
   }
   return participants;
 }
 
 function loadQuestionsForParticipant(usedIndices: number[], group: 'A' | 'B', round: GameState['round']): { questions: Question[]; indices: number[] } {
-  if (round === 'eliminatorias') {
-    return pickProgressiveQuestions(allQuestions, usedIndices, group, round);
-  }
-  return pickRandomQuestions(allQuestions, QUESTIONS_PER_PARTICIPANT, usedIndices, group, round);
+  return pickProgressiveQuestions(allQuestions, usedIndices, group, round);
 }
 
 function gameReducer(state: GameState, action: GameAction): GameState {

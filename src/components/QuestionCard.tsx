@@ -53,40 +53,41 @@ export default function QuestionCard({
       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       className="w-full max-w-3xl mx-auto"
     >
-      {/* Progress dots */}
-      <div className="flex justify-center gap-2 mb-4">
-        {Array.from({ length: totalQuestions }, (_, i) => (
-          <motion.div
-            key={i}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i < questionNumber - 1
-                ? 'w-8 bg-gold'
-                : i === questionNumber - 1
-                ? 'w-10 bg-gradient-to-r from-gold to-gold-light'
-                : 'w-4 bg-dark-light border border-gray-game/20'
-            }`}
-            animate={i === questionNumber - 1 ? { scale: [1, 1.1, 1] } : {}}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        ))}
-      </div>
+      {/* Progress dots + Question badge */}
+      <div className="bg-dark/60 backdrop-blur-md rounded-2xl px-5 py-3 mb-4 border border-white/5">
+        <div className="flex justify-center gap-2 mb-3">
+          {Array.from({ length: totalQuestions }, (_, i) => (
+            <motion.div
+              key={i}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i < questionNumber - 1
+                  ? 'w-8 bg-gold'
+                  : i === questionNumber - 1
+                  ? 'w-10 bg-gradient-to-r from-gold to-gold-light'
+                  : 'w-4 bg-dark-light border border-gray-game/20'
+              }`}
+              animate={i === questionNumber - 1 ? { scale: [1, 1.1, 1] } : {}}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
+          ))}
+        </div>
 
-      {/* Question badge */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.1 }}
-        className="text-center mb-4"
-      >
-        <span className="inline-block bg-gold/15 border border-gold/30 text-gold text-sm font-bold px-4 py-1.5 rounded-full tracking-wider uppercase">
-          Pregunta {questionNumber} de {totalQuestions}
-        </span>
-        {question.difficulty && (
-          <span className={`inline-block ml-2 border text-xs font-bold px-3 py-1.5 rounded-full tracking-wider uppercase ${difficultyColors[question.difficulty]}`}>
-            {DIFFICULTY_LABELS[question.difficulty]} — {DIFFICULTY_POINTS[question.difficulty]} {DIFFICULTY_POINTS[question.difficulty] === 1 ? 'pt' : 'pts'}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+          className="text-center"
+        >
+          <span className="inline-block bg-gold/15 border border-gold/30 text-gold text-sm font-bold px-4 py-1.5 rounded-full tracking-wider uppercase">
+            Pregunta {questionNumber} de {totalQuestions}
           </span>
-        )}
-      </motion.div>
+          {question.difficulty && (
+            <span className={`inline-block ml-2 border text-xs font-bold px-3 py-1.5 rounded-full tracking-wider uppercase ${difficultyColors[question.difficulty]}`}>
+              {DIFFICULTY_LABELS[question.difficulty]} — {DIFFICULTY_POINTS[question.difficulty]} {DIFFICULTY_POINTS[question.difficulty] === 1 ? 'pt' : 'pts'}
+            </span>
+          )}
+        </motion.div>
+      </div>
 
       {/* Question text - bigger and bolder */}
       <motion.div

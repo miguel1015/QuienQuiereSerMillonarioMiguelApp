@@ -20,6 +20,8 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
   const [assignments, setAssignments] = useState<Record<string, GroupAssignment>>(
     () => Object.fromEntries(PARTICIPANTS.map((p) => [p.id, null]))
   );
+  // Track selection order per group
+  const [selectionOrder, setSelectionOrder] = useState<{ id: string; group: 'A' | 'B' }[]>([]);
   const [error, setError] = useState('');
 
   const groupACount = Object.values(assignments).filter((g) => g === 'A').length;
@@ -31,7 +33,6 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
       const current = prev[id];
       let next: GroupAssignment;
       if (current === null) {
-        // Try A first, if full try B, if both full stay null
         if (groupACount < REQUIRED_PER_GROUP) next = 'A';
         else if (groupBCount < REQUIRED_PER_GROUP) next = 'B';
         else next = null;
@@ -42,6 +43,27 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
       }
       return { ...prev, [id]: next };
     });
+
+    // Update selection order
+    setSelectionOrder((prev) => {
+      const current = assignments[id];
+      // Remove from previous order
+      const filtered = prev.filter((e) => e.id !== id);
+      let nextGroup: GroupAssignment;
+      if (current === null) {
+        if (groupACount < REQUIRED_PER_GROUP) nextGroup = 'A';
+        else if (groupBCount < REQUIRED_PER_GROUP) nextGroup = 'B';
+        else nextGroup = null;
+      } else if (current === 'A') {
+        nextGroup = groupBCount < REQUIRED_PER_GROUP ? 'B' : null;
+      } else {
+        nextGroup = null;
+      }
+      if (nextGroup) {
+        return [...filtered, { id, group: nextGroup }];
+      }
+      return filtered;
+    });
   };
 
   const handleContinue = () => {
@@ -49,8 +71,14 @@ export default function SetupScreen({ onContinue, onBack }: SetupScreenProps) {
       setError(`Cada grupo debe tener exactamente ${REQUIRED_PER_GROUP} participantes.`);
       return;
     }
-    const groupA = PARTICIPANTS.filter((p) => assignments[p.id] === 'A').map((p) => ({ name: p.name, image: p.image }));
-    const groupB = PARTICIPANTS.filter((p) => assignments[p.id] === 'B').map((p) => ({ name: p.name, image: p.image }));
+    // Build groups in selection order
+    const participantMap = Object.fromEntries(PARTICIPANTS.map((p) => [p.id, p]));
+    const groupA = selectionOrder
+      .filter((e) => e.group === 'A')
+      .map((e) => ({ name: participantMap[e.id].name, image: participantMap[e.id].image }));
+    const groupB = selectionOrder
+      .filter((e) => e.group === 'B')
+      .map((e) => ({ name: participantMap[e.id].name, image: participantMap[e.id].image }));
     onContinue(groupA, groupB);
   };
 

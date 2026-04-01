@@ -185,19 +185,44 @@ export default function ResultsScreen({ participants, round, onStartFinal, onRes
             transition={{ delay: 0.6, type: 'spring' }}
             className="w-full max-w-2xl mb-6"
           >
-            <div className="bg-dark-card/80 backdrop-blur-sm border-2 border-gold shadow-xl shadow-gold/20 rounded-2xl px-6 py-6 text-center">
+            <div className="bg-dark-card/80 backdrop-blur-sm border-2 border-gold shadow-2xl shadow-gold/30 rounded-3xl px-8 py-10 md:px-12 md:py-14 text-center">
               <motion.span
-                className="text-6xl inline-block mb-2"
+                className="text-7xl md:text-8xl inline-block mb-4"
                 animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 👑
               </motion.span>
-              <h3 className="text-gold font-extrabold text-2xl uppercase tracking-wider mb-1">
+
+              {/* Winner image */}
+              {finalWinner.image && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8, type: 'spring', stiffness: 150 }}
+                  className="flex justify-center mb-6"
+                >
+                  <div className="relative">
+                    <motion.div
+                      className="absolute -inset-2 rounded-full"
+                      style={{ background: 'linear-gradient(135deg, #dba347, #f0c96e, #b8862e, #f0c96e, #dba347)' }}
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                    />
+                    <img
+                      src={finalWinner.image}
+                      alt={finalWinner.name}
+                      className="relative w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-4 border-dark shadow-2xl shadow-gold/40"
+                    />
+                  </div>
+                </motion.div>
+              )}
+
+              <h3 className="text-gold font-extrabold text-3xl md:text-4xl uppercase tracking-wider mb-2">
                 Campeón Absoluto
               </h3>
-              <p className="text-white font-extrabold text-3xl mb-1">{finalWinner.name}</p>
-              <p className="text-gold text-lg font-bold">{finalWinner.score}/{MAX_ROUND_SCORE} pts</p>
+              <p className="text-white font-extrabold text-4xl md:text-5xl mb-2">{finalWinner.name}</p>
+              <p className="text-gold text-xl md:text-2xl font-bold">{finalWinner.score}/{MAX_ROUND_SCORE} pts</p>
             </div>
           </motion.div>
         )}

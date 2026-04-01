@@ -54,10 +54,16 @@ export default function StatsModal({
               <p className="text-gold text-xs uppercase tracking-widest mb-1">Jugador actual</p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${
-                    currentParticipant.group === 'A' ? 'bg-blue-500/30 text-blue-400 border border-blue-500/50' : 'bg-purple-500/30 text-purple-400 border border-purple-500/50'
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm overflow-hidden ${
+                    currentParticipant.image
+                      ? currentParticipant.group === 'A' ? 'ring-2 ring-blue-500' : 'ring-2 ring-purple-500'
+                      : currentParticipant.group === 'A' ? 'bg-blue-500/30 text-blue-400 border border-blue-500/50' : 'bg-purple-500/30 text-purple-400 border border-purple-500/50'
                   }`}>
-                    {currentParticipant.group}
+                    {currentParticipant.image ? (
+                      <img src={currentParticipant.image} alt={currentParticipant.name} className="w-full h-full object-cover" />
+                    ) : (
+                      currentParticipant.group
+                    )}
                   </div>
                   <span className="text-white font-bold text-base md:text-lg truncate">{currentParticipant.name}</span>
                 </div>
@@ -95,10 +101,16 @@ export default function StatsModal({
                       <span className="text-gray-game font-bold w-5 text-sm">
                         {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                       </span>
-                      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
-                        p.group === 'A' ? 'bg-blue-500/20 text-blue-400' : 'bg-purple-500/20 text-purple-400'
+                      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold overflow-hidden ${
+                        p.image
+                          ? p.group === 'A' ? 'ring-2 ring-blue-500' : 'ring-2 ring-purple-500'
+                          : p.group === 'A' ? 'bg-blue-500/20 text-blue-400' : 'bg-purple-500/20 text-purple-400'
                       }`}>
-                        {p.group}
+                        {p.image ? (
+                          <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                        ) : (
+                          p.group
+                        )}
                       </div>
                       <span className={`flex-1 font-semibold truncate ${isCurrent ? 'text-gold' : 'text-white'}`}>
                         {p.name}
