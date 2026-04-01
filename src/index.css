@@ -5,11 +5,13 @@
   --color-gold-light: #f0c96e;
   --color-gold-dark: #b8862e;
   --color-gray-game: #bcb099;
-  --color-dark: #101010;
-  --color-dark-light: #1a1a2e;
-  --color-dark-card: #16213e;
+  --color-dark: #0a0a0f;
+  --color-dark-light: #12122a;
+  --color-dark-card: #111832;
   --color-correct: #27ae60;
   --color-incorrect: #e74c3c;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 *, *::before, *::after {
@@ -24,20 +26,183 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background-color: #101010;
+  font-family: var(--font-body);
+  background-color: #0a0a0f;
   color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button {
   cursor: pointer;
 }
 
+/* Display font utility */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Metallic text effect */
+.text-metallic {
+  background: linear-gradient(
+    135deg,
+    #b8862e 0%,
+    #f0c96e 25%,
+    #dba347 40%,
+    #fff5d4 50%,
+    #dba347 60%,
+    #f0c96e 75%,
+    #b8862e 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shift 4s ease-in-out infinite;
+}
+
+@keyframes metallic-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glowing border animation */
+.border-glow {
+  position: relative;
+}
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--glow-angle, 0deg),
+    #dba347,
+    #f0c96e,
+    #b8862e,
+    transparent,
+    #b8862e,
+    #f0c96e,
+    #dba347
+  );
+  z-index: -1;
+  animation: glow-rotate 4s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes glow-rotate {
+  to { --glow-angle: 360deg; }
+}
+
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Pulse energy ring */
+@keyframes energy-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.energy-ring {
+  animation: energy-pulse 2s ease-out infinite;
+}
+
+/* Scanning reveal effect */
+@keyframes scan-reveal {
+  0% { left: -30%; }
+  100% { left: 130%; }
+}
+
+.scan-line {
+  animation: scan-reveal 1.2s ease-in-out forwards;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+  20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Score counter rolling animation */
+@keyframes roll-up {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.score-roll {
+  animation: roll-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Gradient text shimmer */
+@keyframes text-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #dba347 0%,
+    #f0c96e 25%,
+    #fff5d4 50%,
+    #f0c96e 75%,
+    #dba347 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 3s linear infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Radial burst effect */
+@keyframes burst {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Vignette overlay */
+.vignette {
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: #12122a;
 }
 ::-webkit-scrollbar-thumb {
   background: #dba347;

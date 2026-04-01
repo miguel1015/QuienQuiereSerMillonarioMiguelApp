@@ -7,6 +7,36 @@ import SetupScreen from './screens/SetupScreen';
 import GameScreen from './screens/GameScreen';
 import ResultsScreen from './screens/ResultsScreen';
 
+// Cinematic transition variants
+const EASE = [0.25, 0.46, 0.45, 0.94] as const;
+
+const screenTransitions = {
+  home: {
+    initial: { opacity: 0, scale: 1.1 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.9, filter: 'blur(8px)' },
+    transition: { duration: 0.6, ease: EASE as unknown as [number, number, number, number] },
+  },
+  setup: {
+    initial: { opacity: 0, x: 80, scale: 0.95 },
+    animate: { opacity: 1, x: 0, scale: 1 },
+    exit: { opacity: 0, x: -80, scale: 0.95, filter: 'blur(4px)' },
+    transition: { duration: 0.5, ease: EASE as unknown as [number, number, number, number] },
+  },
+  game: {
+    initial: { opacity: 0, scale: 0.85, filter: 'blur(10px)' },
+    animate: { opacity: 1, scale: 1, filter: 'blur(0px)' },
+    exit: { opacity: 0, scale: 1.1, filter: 'blur(8px)' },
+    transition: { duration: 0.7, ease: EASE as unknown as [number, number, number, number] },
+  },
+  results: {
+    initial: { opacity: 0, y: 60, scale: 0.9 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, scale: 0.8 },
+    transition: { duration: 0.6, ease: EASE as unknown as [number, number, number, number] },
+  },
+};
+
 function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -51,36 +81,38 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen bg-dark overflow-hidden relative">
-      <button
+    <div className="h-screen w-screen bg-dark overflow-hidden relative noise-overlay">
+      {/* Fullscreen button - refined */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
         onClick={toggleFullscreen}
-        className="absolute top-3 right-3 z-50 p-2 rounded-lg bg-dark-card/70 border border-gold/30 text-gold hover:bg-dark-card hover:border-gold/60 backdrop-blur-sm transition-all cursor-pointer"
+        className="absolute top-3 right-3 z-50 p-2.5 rounded-xl bg-dark-card/60 border border-white/10 text-gold/70 hover:text-gold hover:bg-dark-card/80 hover:border-gold/30 backdrop-blur-md transition-all cursor-pointer"
         title={isFullscreen ? 'Salir de pantalla completa' : 'Pantalla completa'}
       >
         {isFullscreen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="4 14 10 14 10 20" />
             <polyline points="20 10 14 10 14 4" />
             <line x1="14" y1="10" x2="21" y2="3" />
             <line x1="3" y1="21" x2="10" y2="14" />
           </svg>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 3 21 3 21 9" />
             <polyline points="9 21 3 21 3 15" />
             <line x1="21" y1="3" x2="14" y2="10" />
             <line x1="3" y1="21" x2="10" y2="14" />
           </svg>
         )}
-      </button>
+      </motion.button>
+
       <AnimatePresence mode="wait">
         {state.screen === 'home' && (
           <motion.div
             key="home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            {...screenTransitions.home}
             className="h-full w-full"
           >
             <HomeScreen onStart={() => { playSound('intro'); setScreen('setup'); }} />
@@ -90,10 +122,7 @@ function App() {
         {state.screen === 'setup' && (
           <motion.div
             key="setup"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.4 }}
+            {...screenTransitions.setup}
             className="h-full w-full"
           >
             <SetupScreen
@@ -106,10 +135,7 @@ function App() {
         {state.screen === 'game' && (
           <motion.div
             key="game"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.5 }}
+            {...screenTransitions.game}
             className="h-full w-full"
           >
             <GameScreen
@@ -131,10 +157,7 @@ function App() {
         {state.screen === 'results' && (
           <motion.div
             key="results"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
+            {...screenTransitions.results}
             className="h-full w-full"
           >
             <ResultsScreen
