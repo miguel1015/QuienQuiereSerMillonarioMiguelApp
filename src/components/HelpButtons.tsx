@@ -10,6 +10,8 @@ interface HelpButtonsProps {
   onFriend: () => void;
   onAudience: () => void;
   onCloseHelp: () => void;
+  onPauseTimer: () => void;
+  onResumeTimer: () => void;
   isDisabled: boolean;
 }
 
@@ -24,17 +26,35 @@ export default function HelpButtons({
   onFriend,
   onAudience,
   onCloseHelp,
+  onPauseTimer,
+  onResumeTimer,
   isDisabled,
 }: HelpButtonsProps) {
   const showModal = audienceResults !== null || friendSuggestion !== null;
+  const isLoading = (audienceResults === undefined || friendSuggestion === undefined);
+
+  const handleFriendClick = () => {
+    onPauseTimer();
+    onFriend();
+  };
+
+  const handleAudienceClick = () => {
+    onPauseTimer();
+    onAudience();
+  };
+
+  const handleCloseModal = () => {
+    onResumeTimer();
+    onCloseHelp();
+  };
 
   return (
     <>
       <div className="flex justify-center gap-2 md:gap-3 flex-wrap">
         {[
           { key: 'statistics' as const, icon: '📊', label: 'Estadísticas', action: onStatistics, available: true },
-          { key: 'callFriend' as const, icon: '📞', label: 'Llamar a un amigo', action: onFriend, available: helps.callFriend },
-          { key: 'askAudience' as const, icon: '👥', label: 'Preguntar al público', action: onAudience, available: helps.askAudience },
+          { key: 'callFriend' as const, icon: '📞', label: 'Llamar a un amigo', action: handleFriendClick, available: helps.callFriend },
+          { key: 'askAudience' as const, icon: '👥', label: 'Preguntar al público', action: handleAudienceClick, available: helps.askAudience },
         ].map((help) => (
           <motion.button
             key={help.key}
@@ -70,7 +90,7 @@ export default function HelpButtons({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center"
-            onClick={onCloseHelp}
+            onClick={handleCloseModal}
           >
             <div className="absolute inset-0 bg-black/80 backdrop-blur-lg" />
 
@@ -82,7 +102,7 @@ export default function HelpButtons({
               className="relative z-10 bg-dark-card/95 border-2 border-gold/25 rounded-3xl p-4 md:p-8 mx-4 max-w-lg w-full shadow-2xl shadow-gold/10 backdrop-blur-md"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Audience results */}
+              {/* Audience results - Only show if loaded */}
               {audienceResults && (
                 <>
                   <motion.div initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }} className="text-4xl md:text-5xl text-center mb-3 md:mb-4">
@@ -124,7 +144,31 @@ export default function HelpButtons({
                 </>
               )}
 
-              {/* Friend suggestion */}
+              {/* Loading state for audience - Show if in loading state */}
+              {friendSuggestion === undefined && audienceResults === undefined && (
+                <>
+                  <motion.div initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }} className="text-4xl md:text-5xl text-center mb-3 md:mb-4">
+                    👥
+                  </motion.div>
+                  <h3 className="text-gold font-display font-bold text-xl md:text-2xl text-center mb-6 md:mb-8">
+                    Consultando el público...
+                  </h3>
+                  <motion.div
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="flex justify-center gap-2"
+                  >
+                    {[0, 1, 2].map((i) => (
+                      <div
+                        key={i}
+                        className="w-3 h-3 bg-gold rounded-full"
+                      />
+                    ))}
+                  </motion.div>
+                </>
+              )}
+
+              {/* Friend suggestion - Only show if loaded */}
               {friendSuggestion !== null && (
                 <>
                   <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-5xl text-center mb-4">
@@ -157,13 +201,37 @@ export default function HelpButtons({
                 </>
               )}
 
+              {/* Loading state for friend - Show if in loading state */}
+              {friendSuggestion === undefined && audienceResults !== undefined && (
+                <>
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-5xl text-center mb-4">
+                    📞
+                  </motion.div>
+                  <h3 className="text-gold font-display font-bold text-2xl text-center mb-8">
+                    Llamando a un amigo...
+                  </h3>
+                  <motion.div
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="flex justify-center gap-2"
+                  >
+                    {[0, 1, 2].map((i) => (
+                      <div
+                        key={i}
+                        className="w-3 h-3 bg-gold rounded-full"
+                      />
+                    ))}
+                  </motion.div>
+                </>
+              )}
+
               <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={onCloseHelp}
+                onClick={handleCloseModal}
                 className="mt-6 w-full py-2.5 bg-gold/10 border border-gold/30 rounded-xl text-gold font-semibold text-sm hover:bg-gold/20 transition-all"
               >
                 Cerrar
